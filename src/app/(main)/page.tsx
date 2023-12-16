@@ -8,12 +8,6 @@ import 'swiper/css/pagination'
 import { IntroductionSection } from '@/app/(main)/sections/Introduction/IntroductionSection'
 import { MusicSection } from '@/app/(main)/sections/music/MusicSection'
 
-interface TabPanelProps {
-  children?: React.ReactNode
-  index: number
-  value: number
-}
-
 export default function MainPage() {
   return (
     <Box width={'100vw'} height={'100vh'}>
