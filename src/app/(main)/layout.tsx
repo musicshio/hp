@@ -1,16 +1,10 @@
-import * as React from 'react';
-import {Box} from "@mui/system";
-
+import * as React from 'react'
+import { Box } from '@mui/system'
 
 export default function MainLayout({
-                                     children,
-                                   }: {
+  children,
+}: {
   children: React.ReactNode
 }) {
-
-  return (
-    <Box>
-      {children}
-    </Box>
-  );
+  return <Box>{children}</Box>
 }
