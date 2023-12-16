@@ -1,11 +1,11 @@
-import { SectionBox } from '@/app/(main)/sections/SectionBox'
+import { Section } from '@/app/(main)/sections/Section'
 import { Typography } from '@mui/material'
 
 export const IntroductionSection = () => {
   return (
-    <SectionBox>
+    <Section>
       <Typography>Introduction</Typography>
       <Typography>musicshio</Typography>
-    </SectionBox>
+    </Section>
   )
 }
