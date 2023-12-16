@@ -4,9 +4,5 @@ interface SectionBoxProps {
   children: React.ReactNode
 }
 export const Section = ({ children }: SectionBoxProps) => {
-  return (
-    <Box height={'100px'} bgcolor={'red'}>
-      {children}
-    </Box>
-  )
+  return <Box height={'100%'}>{children}</Box>
 }
