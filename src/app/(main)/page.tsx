@@ -6,7 +6,9 @@ import 'swiper/css'
 import { Keyboard, Mousewheel, Navigation, Pagination } from 'swiper/modules'
 import 'swiper/css/pagination'
 import { IntroductionSection } from '@/app/(main)/sections/Introduction/IntroductionSection'
-import { MusicSection } from '@/app/(main)/sections/music/MusicSection'
+import { MusicCompositionSection } from '@/app/(main)/sections/music/MusicCompositionSection'
+import { AcapellaSection } from '@/app/(main)/sections/acapella/AcapellaSection'
+import { DesignSection } from '@/app/(main)/sections/design/DesignSection'
 
 export default function MainPage() {
   return (
@@ -27,7 +29,13 @@ export default function MainPage() {
           <IntroductionSection />
         </SwiperSlide>
         <SwiperSlide>
-          <MusicSection />
+          <MusicCompositionSection />
+        </SwiperSlide>
+        <SwiperSlide>
+          <AcapellaSection />
+        </SwiperSlide>
+        <SwiperSlide>
+          <DesignSection />
         </SwiperSlide>
       </Swiper>
     </Box>
