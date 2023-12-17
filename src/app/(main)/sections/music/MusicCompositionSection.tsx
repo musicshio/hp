@@ -13,7 +13,7 @@ import { Section } from '@/app/(main)/sections/Section'
 import { FiExternalLink } from 'react-icons/fi'
 import { PiSoundcloudLogoFill, PiYoutubeLogoFill } from 'react-icons/pi'
 
-export const MusicSection = () => {
+export const MusicCompositionSection = () => {
   return (
     <Section>
       <Typography variant="h1" gutterBottom>
