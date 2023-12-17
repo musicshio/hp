@@ -272,6 +272,20 @@
   dependencies:
     "@babel/runtime" "^7.23.5"
 
+"@mui/joy@^5.0.0-beta.18":
+  version "5.0.0-beta.18"
+  resolved "https://registry.yarnpkg.com/@mui/joy/-/joy-5.0.0-beta.18.tgz#24f708a71bfa1c5b593290b202fb97e0f0f99143"
+  integrity sha512-TxEo7kqEnbjB5S8cyFrytWjzhxW12UxkEJOT0QM8WpwaBN3Ie1okFuo2bnFW94vYFZperW97/H/08cqqS/2JPA==
+  dependencies:
+    "@babel/runtime" "^7.23.5"
+    "@mui/base" "5.0.0-beta.27"
+    "@mui/core-downloads-tracker" "^5.15.0"
+    "@mui/system" "^5.15.0"
+    "@mui/types" "^7.2.11"
+    "@mui/utils" "^5.15.0"
+    clsx "^2.0.0"
+    prop-types "^15.8.1"
+
 "@mui/material@^5.15.0":
   version "5.15.0"
   resolved "https://registry.yarnpkg.com/@mui/material/-/material-5.15.0.tgz#f801cf56d505cc52dca225438360ab9c62057285"
