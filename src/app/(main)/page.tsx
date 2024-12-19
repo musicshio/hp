@@ -9,6 +9,7 @@ import { IntroductionSection } from '@/app/(main)/sections/Introduction/Introduc
 import { MusicCompositionSection } from '@/app/(main)/sections/music/MusicCompositionSection'
 import { AcapellaSection } from '@/app/(main)/sections/acapella/AcapellaSection'
 import { DesignSection } from '@/app/(main)/sections/design/DesignSection'
+import { EngineeringSection } from '@/app/(main)/sections/engineering/EngineeringSection'
 
 export default function MainPage() {
   return (
@@ -27,6 +28,9 @@ export default function MainPage() {
       >
         <SwiperSlide>
           <IntroductionSection />
+        </SwiperSlide>
+        <SwiperSlide>
+          <EngineeringSection />
         </SwiperSlide>
         <SwiperSlide>
           <MusicCompositionSection />
