@@ -1,10 +1,12 @@
-import * as React from 'react'
-import { Box } from '@mui/system'
+import * as React from "react";
+import { Stack } from "@mui/system";
+import Nav from "@/components/Nav";
 
-export default function MainLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
-  return <Box>{children}</Box>
+export default function Layout({ children }: { children: React.ReactNode }) {
+  return (
+    <Stack direction={"row"} height={"100dvh"} p={2} spacing={2}>
+      <Nav />
+      {children}
+    </Stack>
+  );
 }

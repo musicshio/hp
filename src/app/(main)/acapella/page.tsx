@@ -9,14 +9,14 @@ import {
   Typography,
 } from "@mui/material";
 import { PiYoutubeLogoFill } from "react-icons/pi";
+import { Stack } from "@mui/system";
 
 export default function Page() {
   return (
-    <>
+    <Stack>
       <Typography variant="h1" gutterBottom>
-        Acapella
+        A capella
       </Typography>
-
       <Typography variant="subtitle1" gutterBottom>
         多重録音作品をアップしています
       </Typography>
@@ -79,6 +79,6 @@ export default function Page() {
           </Card>
         </Grid>
       </Grid>
-    </>
+    </Stack>
   );
 }
