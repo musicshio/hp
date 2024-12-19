@@ -11,10 +11,11 @@ import {
 } from "@mui/material";
 import { FiExternalLink } from "react-icons/fi";
 import { PiSoundcloudLogoFill, PiYoutubeLogoFill } from "react-icons/pi";
+import { Stack } from "@mui/system";
 
 export default function Page() {
   return (
-    <>
+    <Stack>
       <Typography variant="h1" gutterBottom>
         Music - Composition
       </Typography>
@@ -114,6 +115,6 @@ export default function Page() {
           </Card>
         </Grid>
       </Grid>
-    </>
+    </Stack>
   );
 }
