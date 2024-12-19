@@ -1,115 +1,103 @@
-import {
-  Card,
-  CardActions,
-  CardContent,
-  CardHeader,
-  Chip,
-  Grid,
-  Typography,
-} from '@mui/material'
-import { Section } from '@/app/(main)/sections/Section'
-import { FaReact } from 'react-icons/fa'
-import { TbBrandNextjs } from 'react-icons/tb'
-import { SiFigma, SiFlutter, SiTypescript } from 'react-icons/si'
-import { IoLogoFirebase } from 'react-icons/io5'
-import { Box } from '@mui/system'
+import { Card, CardActions, CardContent, CardHeader, Chip, Grid, Typography } from "@mui/material";
+import { FaReact } from "react-icons/fa";
+import { TbBrandNextjs } from "react-icons/tb";
+import { SiFigma, SiFlutter, SiTypescript } from "react-icons/si";
+import { IoLogoFirebase } from "react-icons/io5";
+import { Box } from "@mui/system";
 
 enum TechStackTag {
-  Frontend = 'Frontend',
-  Backend = 'Backend',
-  Database = 'Database',
-  Mobile = 'Mobile',
-  DevOps = 'DevOps',
-  Design = 'Design',
+  Frontend = "Frontend",
+  Backend = "Backend",
+  Database = "Database",
+  Mobile = "Mobile",
+  DevOps = "DevOps",
+  Design = "Design",
 }
 
 enum TechStackExperience {
-  Beginner = 'Beginner',
-  Intermediate = 'Intermediate',
-  Advanced = 'Advanced',
+  Beginner = "Beginner",
+  Intermediate = "Intermediate",
+  Advanced = "Advanced",
 }
 
 const techStackItems: TechStackItem[] = [
   {
-    id: 'react',
-    name: 'React',
+    id: "react",
+    name: "React",
     tags: [TechStackTag.Frontend],
     icon: <FaReact />,
-    description: '',
+    description: "",
     experience: TechStackExperience.Intermediate,
   },
   {
-    id: 'nextjs',
-    name: 'Next.js',
+    id: "nextjs",
+    name: "Next.js",
     tags: [TechStackTag.Frontend],
     icon: <TbBrandNextjs />,
-    description: '',
+    description: "",
     experience: TechStackExperience.Intermediate,
   },
   {
-    id: 'typescript',
-    name: 'TypeScript',
+    id: "typescript",
+    name: "TypeScript",
     tags: [TechStackTag.Frontend, TechStackTag.Backend],
     icon: <SiTypescript />,
-    description: '',
+    description: "",
     experience: TechStackExperience.Advanced,
   },
   {
-    id: 'firebase',
-    name: 'Firebase',
+    id: "firebase",
+    name: "Firebase",
     tags: [TechStackTag.Backend, TechStackTag.Database, TechStackTag.DevOps],
     icon: <IoLogoFirebase />,
-    description: '',
+    description: "",
     experience: TechStackExperience.Advanced,
   },
   {
-    id: 'flutter',
-    name: 'Flutter',
+    id: "flutter",
+    name: "Flutter",
     tags: [TechStackTag.Mobile],
     icon: <SiFlutter />,
-    description: '',
+    description: "",
     experience: TechStackExperience.Intermediate,
   },
   {
-    id: 'figma',
-    name: 'Figma',
+    id: "figma",
+    name: "Figma",
     tags: [TechStackTag.Design],
     icon: <SiFigma />,
-    description: '',
+    description: "",
     experience: TechStackExperience.Advanced,
   },
-]
-export const EngineeringSection = () => {
+];
+
+export default function Page() {
   return (
-    <Section>
+    <>
       <Typography variant="h1" gutterBottom>
         Engineering
       </Typography>
 
-      <Grid
-        container
-        spacing={{ xs: 2, md: 3 }}
-        columns={{ xs: 4, sm: 8, md: 12 }}
-      >
+      <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
         {techStackItems.map((item) => (
           <TechStackCard key={item.name} item={item} />
         ))}
       </Grid>
-    </Section>
-  )
+    </>
+  );
 }
 
 interface TechStackItem {
-  id: string
-  name: string
-  icon: React.ReactNode
-  tags: TechStackTag[]
-  description: string
-  experience: TechStackExperience
+  id: string;
+  name: string;
+  icon: React.ReactNode;
+  tags: TechStackTag[];
+  description: string;
+  experience: TechStackExperience;
 }
 
 interface TechStackCardProps {
-  item: TechStackItem
+  item: TechStackItem;
 }
 
 const TechStackCard = ({ item }: TechStackCardProps) => {
@@ -123,7 +111,7 @@ const TechStackCard = ({ item }: TechStackCardProps) => {
           ))}
         />
         <CardContent>
-          <Box alignItems={'center'} sx={{ fontSize: 40 }} textAlign={'center'}>
+          <Box alignItems={"center"} sx={{ fontSize: 40 }} textAlign={"center"}>
             {item.icon}
           </Box>
           <Typography sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
@@ -133,5 +121,5 @@ const TechStackCard = ({ item }: TechStackCardProps) => {
         <CardActions></CardActions>
       </Card>
     </Grid>
-  )
-}
+  );
+};
