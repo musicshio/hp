@@ -1,8 +1,9 @@
-import Box from '@mui/material/Box'
+import Box from "@mui/material/Box";
 
 interface SectionBoxProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
+
 export const Section = ({ children }: SectionBoxProps) => {
-  return <Box height={'100%'}>{children}</Box>
-}
+  return <Box height={"100%"}>{children}</Box>;
+};
