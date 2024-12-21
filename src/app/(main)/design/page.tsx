@@ -9,12 +9,12 @@ import {
   Link,
   Typography,
 } from "@mui/material";
-import { Box } from "@mui/system";
+import { Box, Stack } from "@mui/system";
 import { PiYoutubeLogoFill } from "react-icons/pi";
 
 export default function Page() {
   return (
-    <>
+    <Stack>
       <Typography variant="h1" gutterBottom>
         Design
       </Typography>
@@ -76,6 +76,6 @@ export default function Page() {
           </Card>
         </Grid>
       </Grid>
-    </>
+    </Stack>
   );
 }
