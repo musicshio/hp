@@ -3,7 +3,7 @@ import { FaReact } from "react-icons/fa";
 import { TbBrandNextjs } from "react-icons/tb";
 import { SiFigma, SiFlutter, SiTypescript } from "react-icons/si";
 import { IoLogoFirebase } from "react-icons/io5";
-import { Box } from "@mui/system";
+import { Box, Stack } from "@mui/system";
 
 enum TechStackTag {
   Frontend = "Frontend",
@@ -73,7 +73,7 @@ const techStackItems: TechStackItem[] = [
 
 export default function Page() {
   return (
-    <>
+    <Stack>
       <Typography variant="h1" gutterBottom>
         Engineering
       </Typography>
@@ -83,7 +83,7 @@ export default function Page() {
           <TechStackCard key={item.name} item={item} />
         ))}
       </Grid>
-    </>
+    </Stack>
   );
 }
 
