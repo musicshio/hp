@@ -1,84 +1,111 @@
-import {
-  Card,
-  CardActions,
-  CardContent,
-  CardHeader,
-  CardMedia,
-  Grid,
-  IconButton,
-  Typography,
-} from "@mui/material";
-import { PiYoutubeLogoFill } from "react-icons/pi";
-import { Stack } from "@mui/system";
+import { Button, Card, CardActionArea, CardMedia, Divider, Grid2, Typography } from "@mui/material";
+import { Box, Stack } from "@mui/system";
+import Link from "next/link";
+import Image from "next/image";
+import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
+
+const itemData: ItemProps[] = [
+  {
+    id: "tokyo-shandy-randevouz",
+    img: "/images/tokyo-shandy-randevouz.png",
+    externalUrl: "https://youtu.be/7qyZWwgqGf8?si=kOACD8U1H8ucBX0g",
+    title: "トウキョウ・シャンディ・ランデヴ feat. 花譜, ツミキ - MAISONdes",
+  },
+  {
+    id: "gogo",
+    img: "/images/gogo.jpg",
+    externalUrl: "https://youtu.be/uYJMmYAD45w?si=o5Yt1K9h7JzUou0Z",
+    title: "ゴーゴー幽霊船 - 米津玄師",
+  },
+];
 
 export default function Page() {
   return (
-    <Stack>
-      <Typography variant="h1" gutterBottom>
-        A capella
-      </Typography>
-      <Typography variant="subtitle1" gutterBottom>
-        多重録音作品をアップしています
-      </Typography>
-      <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-        <Grid item xs={4}>
-          <Card>
-            <CardHeader
-              title="トウキョウ・シャンディ・ランデヴ feat. 花譜, ツミキ - MAISONdes"
-              subheader="2023"
-            />
-            <CardMedia
-              height="250"
-              component={"iframe"}
-              src={"https://www.youtube.com/embed/7qyZWwgqGf8?si=BWL9-2xAnlKboFRi"}
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-            />
-            <CardContent>
-              <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                covered by shio
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <IconButton
-                aria-label="YouTube"
-                target="_blank"
-                href={"https://youtu.be/7qyZWwgqGf8?si=kOACD8U1H8ucBX0g"}
-              >
-                <PiYoutubeLogoFill />
-              </IconButton>
-            </CardActions>
-          </Card>
-        </Grid>
-        <Grid item xs={4}>
-          <Card>
-            <CardHeader title="ゴーゴー幽霊船 - 米津玄師" subheader="2021" />
-            <CardMedia
-              height="250"
-              component={"iframe"}
-              src={"https://www.youtube.com/embed/uYJMmYAD45w?si=QEHEu8F7kk8OU5BU"}
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-            />
-            <CardContent>
-              <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                covered by mai & shio
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <IconButton
-                aria-label="YouTube"
-                target="_blank"
-                href={"https://youtu.be/uYJMmYAD45w?si=o5Yt1K9h7JzUou0Z"}
-              >
-                <PiYoutubeLogoFill />
-              </IconButton>
-            </CardActions>
-          </Card>
-        </Grid>
-      </Grid>
+    <Stack width={"100%"}>
+      <Typography variant="h1">A capella</Typography>
+      <Typography variant="subtitle1">多重録音作品をアップしています</Typography>
+      <Divider />
+      <Grid2 container spacing={{ xs: 1, md: 2 }} columns={{ xs: 4, sm: 4, md: 8 }}>
+        {itemData.map((item) => (
+          <Item key={item.title} {...item} />
+        ))}
+      </Grid2>
     </Stack>
+  );
+}
+
+type ItemProps = {
+  img: string;
+  id: string;
+  externalUrl: string;
+  title: string;
+};
+
+function Item({ img, id, title, externalUrl }: ItemProps) {
+  return (
+    <Grid2 size={4}>
+      <Card
+        variant="outlined"
+        component={Box}
+        position={"relative"}
+        sx={{
+          borderRadius: 4,
+        }}
+      >
+        <CardActionArea
+          component={Link}
+          href={`/acapella/${id}`}
+          sx={{
+            position: "relative",
+          }}
+        >
+          <CardMedia
+            component={Box}
+            sx={{
+              height: "300px",
+              position: "relative",
+              "&:hover": {
+                "& img": {
+                  transition: "all 0.5s",
+                  transform: "scale(1.02)",
+                },
+              },
+            }}
+          >
+            <Image src={img} fill alt={title} objectFit="cover" />
+          </CardMedia>
+          <Stack
+            p={1}
+            position={"absolute"}
+            bottom={0}
+            sx={{
+              background: "linear-gradient(to top, #000, rgba(0,0,0,0))",
+            }}
+            width={"100%"}
+          >
+            <Typography variant={"caption"} color={"gray"}>
+              2023
+            </Typography>
+            <Typography color={"white"}>{title}</Typography>
+          </Stack>
+        </CardActionArea>
+        <Box position={"absolute"} top={0} right={0} p={1}>
+          <Link href={externalUrl} passHref legacyBehavior>
+            <Button
+              component={"a"}
+              variant="contained"
+              sx={{
+                minWidth: 0,
+                p: 1,
+              }}
+              color={"secondary"}
+              target={"_blank"}
+            >
+              <ArrowOutwardIcon />
+            </Button>
+          </Link>
+        </Box>
+      </Card>
+    </Grid2>
   );
 }
