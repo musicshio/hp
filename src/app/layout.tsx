@@ -4,6 +4,7 @@ import "./globals.css";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import theme from "@/theme";
 import { ThemeProvider } from "@mui/system";
+import "../global.css";
 
 const roboto = Roboto({
   weight: ["300", "400", "500", "700"],
