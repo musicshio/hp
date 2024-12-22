@@ -7,9 +7,7 @@ import { Stack } from "@mui/system";
 export default function Page() {
   return (
     <Stack>
-      <Typography variant="h1" gutterBottom>
-        Introduction
-      </Typography>
+      <Typography variant="h1">Introduction</Typography>
       <Typography>musicshio</Typography>
     </Stack>
   );
