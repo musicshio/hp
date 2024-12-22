@@ -1,6 +1,5 @@
 "use client";
 import { ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
-import MicIcon from "@mui/icons-material/Mic";
 import HomeIcon from "@mui/icons-material/Home";
 import LibraryMusicIcon from "@mui/icons-material/LibraryMusic";
 import DesignServicesIcon from "@mui/icons-material/DesignServices";
@@ -17,12 +16,6 @@ export default function Nav() {
           <HomeIcon />
         </ListItemIcon>
         <ListItemText primary="Home" />
-      </ListItemButton>
-      <ListItemButton component={NextLink} href={"/acapella"}>
-        <ListItemIcon>
-          <MicIcon />
-        </ListItemIcon>
-        <ListItemText primary="A capella" />
       </ListItemButton>
       <ListItemButton component={NextLink} href={"/design"}>
         <ListItemIcon>
