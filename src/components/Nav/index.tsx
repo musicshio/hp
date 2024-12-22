@@ -7,6 +7,7 @@ import CodeIcon from "@mui/icons-material/Code";
 import List from "@mui/material/List";
 import NextLink from "next/link";
 import { Box } from "@mui/system";
+import ModeSwitcher from "./ModeSwitcher";
 
 export default function Nav() {
   return (
@@ -46,6 +47,7 @@ export default function Nav() {
           </ListItemIcon>
           <ListItemText primary="Code" />
         </ListItemButton>
+        <ModeSwitcher />
       </List>
     </Paper>
   );
