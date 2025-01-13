@@ -10,14 +10,12 @@ export default function ModeSwitcher() {
     return null;
   }
   const handleChange = (event: React.MouseEvent<HTMLElement>, newMode: string) => {
-    console.log(newMode);
     setMode(newMode as "light" | "system" | "dark");
   };
   return (
     <Box
       sx={{
         width: "100%",
-        minHeight: "56px",
       }}
     >
       <ToggleButtonGroup
@@ -26,6 +24,7 @@ export default function ModeSwitcher() {
         exclusive
         onChange={handleChange}
         aria-label="Platform"
+        size={"small"}
       >
         <ToggleButton value="light">Light</ToggleButton>
         <ToggleButton value="system">System</ToggleButton>

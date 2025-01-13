@@ -7,14 +7,7 @@ import { AppBar, Divider, Drawer, Paper, Toolbar, Typography } from "@mui/materi
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
-
-// const StyledStack = styled(Stack)({
-//   height: "100dvh",
-//   width: "100dvw",
-//   boxSizing: "border-box",
-//   sx: { padding: 1, overflowX: "hidden" },
-//   padding: "theme.spacing(1)",
-// });
+import ModeSwitcher from "@/components/Nav/ModeSwitcher";
 
 function StyledStack({ children, ...props }: StackProps) {
   return (
@@ -50,6 +43,8 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
             sx={{
               borderRadius: 2,
             }}
+            height={"100%"}
+            position={"relative"}
           >
             <Stack p={2} direction={"row"}>
               <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
@@ -58,6 +53,9 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
             </Stack>
             <Divider />
             <Nav />
+            <Box position={"absolute"} bottom={0} p={2}>
+              <ModeSwitcher />
+            </Box>
           </Paper>
           {children}
         </StyledStack>
