@@ -5,7 +5,6 @@ import LibraryMusicIcon from "@mui/icons-material/LibraryMusic";
 import DesignServicesIcon from "@mui/icons-material/DesignServices";
 import CodeIcon from "@mui/icons-material/Code";
 import List from "@mui/material/List";
-import ModeSwitcher from "./ModeSwitcher";
 import { Link } from "next-view-transitions";
 
 export default function Nav() {
@@ -35,7 +34,6 @@ export default function Nav() {
         </ListItemIcon>
         <ListItemText primary="Code" />
       </ListItemButton>
-      <ModeSwitcher />
     </List>
   );
 }
