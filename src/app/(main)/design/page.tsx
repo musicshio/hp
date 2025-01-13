@@ -15,9 +15,7 @@ import { PiYoutubeLogoFill } from "react-icons/pi";
 export default function Page() {
   return (
     <Stack>
-      <Typography variant="h1" gutterBottom>
-        Design
-      </Typography>
+      <Typography variant="h1">Design</Typography>
       <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
         <Grid item xs={4}>
           <Card>
