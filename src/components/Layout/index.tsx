@@ -40,8 +40,12 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
             elevation={3}
             component={Box}
             minWidth={"200px"}
+            variant={"outlined"}
             sx={{
               borderRadius: 2,
+              backgroundColor: "rgba(255, 255, 255, 0.05)",
+              backdropFilter: "blur(10px)",
+              webkitBackdropFilter: "blur(10px)",
             }}
             height={"100%"}
             position={"relative"}
@@ -67,13 +71,23 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
         }}
       >
         <StyledStack direction={"column"}>
-          <AppBar component={Box} position="sticky" elevation={3} borderRadius={2}>
+          <AppBar
+            component={Box}
+            position="sticky"
+            elevation={3}
+            borderRadius={2}
+            sx={{
+              backgroundColor: "rgba(255, 255, 255, 0.05)",
+              backdropFilter: "blur(10px)",
+              webkitBackdropFilter: "blur(10px)",
+            }}
+            enableColorOnDark
+          >
             <Toolbar>
               <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                 music_shio
               </Typography>
               <IconButton
-                color="inherit"
                 aria-label="menu"
                 onClick={() => {
                   setIsDrawerOpen(true);
@@ -88,12 +102,25 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
             variant="temporary"
             open={isDrawerOpen}
             anchor={"right"}
-            hideBackdrop
             onClose={() => {
               setIsDrawerOpen(false);
             }}
+            PaperProps={{
+              sx: {
+                backdropFilter: "blur(10px)",
+                webkitBackdropFilter: "blur(10px)",
+              },
+            }}
+            slotProps={{
+              backdrop: {
+                sx: {
+                  backdropFilter: "blur(3px)",
+                  webkitBackdropFilter: "blur(3px)",
+                },
+              },
+            }}
           >
-            <Stack width={"100dvw"}>
+            <Stack width={"240px"}>
               <Stack p={2} direction={"row"}>
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                   music_shio
@@ -110,6 +137,9 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
               </Stack>
               <Divider />
               <Nav />
+              <Box position={"absolute"} bottom={0} p={2}>
+                <ModeSwitcher />
+              </Box>
             </Stack>
           </Drawer>
         </StyledStack>
