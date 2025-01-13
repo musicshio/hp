@@ -29,7 +29,7 @@ export default function Nav() {
         </ListItemIcon>
         <ListItemText primary="Music" />
       </ListItemButton>
-      <ListItemButton component={NextLink} href={"/engineering"}>
+      <ListItemButton component={NextLink} href={"/code"}>
         <ListItemIcon>
           <CodeIcon />
         </ListItemIcon>
