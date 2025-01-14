@@ -1,79 +1,113 @@
-import {
-  Card,
-  CardActions,
-  CardContent,
-  CardHeader,
-  CardMedia,
-  Grid,
-  IconButton,
-  Link,
-  Typography,
-} from "@mui/material";
+import { Button, Card, CardActionArea, CardMedia, Chip, Grid2, Typography } from "@mui/material";
 import { Box, Stack } from "@mui/system";
-import { PiYoutubeLogoFill } from "react-icons/pi";
+import Image from "next/image";
+import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
+import { Link } from "next-view-transitions";
+import { designData } from "@/app/(main)/design/_data/data";
 
 export default function Page() {
+  const itemData = designData;
   return (
-    <Stack>
+    <Stack width={"100%"}>
       <Typography variant="h1">Design</Typography>
-      <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-        <Grid item xs={4}>
-          <Card>
-            <CardHeader title="考える岡山" subheader="2022" />
-            <Box bgcolor={"white"}>
-              <CardMedia
-                height="250"
-                component={"img"}
-                image={"https://www.nhk.or.jp/okayama/special/kangaeru/images/kangaeru_fv_pc_2.png"}
-                alt={"NHK岡山『考える岡山』"}
-              />
-            </Box>
-            <CardContent>
-              <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                番組ロゴ / オープニング動画制作
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <IconButton
-                aria-label="YouTube"
-                target="_blank"
-                href={"https://youtu.be/7qyZWwgqGf8?si=kOACD8U1H8ucBX0g"}
-              >
-                <PiYoutubeLogoFill />
-              </IconButton>
-            </CardActions>
-          </Card>
-        </Grid>
-        <Grid item xs={4}>
-          <Card>
-            <CardHeader title="おかやまハレ舞台" subheader="2021" />
-            <Link href={"https://www.nhk.or.jp/okayama/lreport/article/000/12/"}>
-              <CardMedia
-                height="250"
-                component={"img"}
-                image={
-                  "https://www.nhk.jp/p/okayama-mogitate/ts/D939ZJV1QQ/blog/bl/pjRkKA6aW5/bp/pdwaBl1aQo/"
-                }
-                alt={"NHK岡山『おかやまハレ舞台』"}
-              />
-            </Link>
-            <CardContent>
-              <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                番組ロゴ / オープニング動画制作
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <IconButton
-                aria-label="YouTube"
-                target="_blank"
-                href={"https://youtu.be/uYJMmYAD45w?si=o5Yt1K9h7JzUou0Z"}
-              >
-                <PiYoutubeLogoFill />
-              </IconButton>
-            </CardActions>
-          </Card>
-        </Grid>
-      </Grid>
+      <Grid2 container spacing={{ xs: 1, md: 2 }} columns={{ xs: 4, sm: 4, md: 8 }}>
+        {itemData.map((item) => (
+          <Item key={item.title} {...item} />
+        ))}
+      </Grid2>
     </Stack>
+  );
+}
+
+type ItemProps = {
+  img: string;
+  id: string;
+  externalUrl: string;
+  title: string;
+  year: number;
+  tags: string[];
+};
+
+function Item({ img, id, title, externalUrl, year, tags }: ItemProps) {
+  return (
+    <Grid2 size={4}>
+      <Card
+        variant="outlined"
+        component={Box}
+        position={"relative"}
+        sx={{
+          borderRadius: 4,
+          viewTransitionName: `design-card-${id}`,
+        }}
+      >
+        <CardActionArea
+          component={Link}
+          href={`/design/${id}`}
+          sx={{
+            position: "relative",
+          }}
+        >
+          <CardMedia
+            component={Box}
+            sx={{
+              height: "300px",
+              position: "relative",
+              "&:hover": {
+                "& img": {
+                  transition: "all 0.5s",
+                  transform: "scale(1.02)",
+                },
+              },
+              viewTransitionName: `design-content-${id}`,
+            }}
+          >
+            <Image src={img} fill alt={title} objectFit="cover" />
+          </CardMedia>
+
+          <Stack
+            p={1}
+            position={"absolute"}
+            bottom={0}
+            sx={{
+              background: "linear-gradient(to top, #000, rgba(0,0,0,0))",
+            }}
+            width={"100%"}
+          >
+            <Typography variant={"caption"} color={"gray"}>
+              {year}
+            </Typography>
+            <Typography
+              color={"white"}
+              sx={{
+                viewTransitionName: `design-title-${id}`,
+              }}
+            >
+              {title}
+            </Typography>
+            <Stack direction={"row"}>
+              {tags.map((tag) => (
+                <Chip label={tag} key={tag} variant="outlined" />
+              ))}
+            </Stack>
+          </Stack>
+        </CardActionArea>
+        <Box position={"absolute"} top={0} right={0} p={1}>
+          <Link href={externalUrl} passHref legacyBehavior>
+            <Button
+              component={"a"}
+              variant="contained"
+              sx={{
+                minWidth: 0,
+                p: 1,
+              }}
+              color={"secondary"}
+              target={"_blank"}
+            >
+              <ArrowOutwardIcon />
+            </Button>
+          </Link>
+        </Box>
+      </Card>
+    </Grid2>
   );
 }
