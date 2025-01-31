@@ -2,12 +2,12 @@
 import * as React from "react";
 import { useState } from "react";
 import { Box, Stack, StackProps } from "@mui/system";
-import Nav from "@/components/Nav";
+import Nav from "@/app/(main)/_components/nav";
 import { AppBar, Divider, Drawer, Paper, Toolbar, Typography } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
-import ModeSwitcher from "@/components/Nav/ModeSwitcher";
+import ModeSwitcher from "../nav/ModeSwitcher";
 
 function StyledStack({ children, ...props }: StackProps) {
   return (
@@ -25,7 +25,7 @@ function StyledStack({ children, ...props }: StackProps) {
   );
 }
 
-export default function MainLayout({ children }: { children: React.ReactNode }) {
+export default function Index({ children }: { children: React.ReactNode }) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   return (
     <>
