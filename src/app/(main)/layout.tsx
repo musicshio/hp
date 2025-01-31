@@ -1,6 +1,6 @@
 import * as React from "react";
-import MainLayout from "@/components/Layout";
+import Index from "@/app/(main)/_components/main-layout";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  return <MainLayout>{children}</MainLayout>;
+  return <Index>{children}</Index>;
 }
