@@ -3,11 +3,12 @@ import * as React from "react";
 import { useState } from "react";
 import { Box, Stack, StackProps } from "@mui/system";
 import Nav from "@/app/(main)/_components/nav";
-import { AppBar, Divider, Drawer, Paper, Toolbar, Typography } from "@mui/material";
+import { AppBar, Divider, Drawer, Paper, Toolbar } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import ModeSwitcher from "../nav/ModeSwitcher";
+import Logo from "@/components/logo";
 
 function StyledStack({ children, ...props }: StackProps) {
   return (
@@ -50,11 +51,9 @@ export default function Index({ children }: { children: React.ReactNode }) {
             height={"100%"}
             position={"relative"}
           >
-            <Stack p={2} direction={"row"}>
-              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                music_shio
-              </Typography>
-            </Stack>
+            <Box p={2}>
+              <Logo height={"50px"} />
+            </Box>
             <Divider />
             <Nav />
             <Box position={"absolute"} bottom={0} p={2}>
@@ -84,17 +83,19 @@ export default function Index({ children }: { children: React.ReactNode }) {
             enableColorOnDark
           >
             <Toolbar>
-              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                music_shio
-              </Typography>
-              <IconButton
-                aria-label="menu"
-                onClick={() => {
-                  setIsDrawerOpen(true);
-                }}
-              >
-                <MenuIcon />
-              </IconButton>
+              <Box width={"100%"} display="flex" justifyContent="center" alignItems="center">
+                <Logo width={"40px"} height={"40px"} />
+              </Box>
+              <Box right={8} position={"absolute"}>
+                <IconButton
+                  aria-label="menu"
+                  onClick={() => {
+                    setIsDrawerOpen(true);
+                  }}
+                >
+                  <MenuIcon />
+                </IconButton>
+              </Box>
             </Toolbar>
           </AppBar>
           {children}
@@ -122,9 +123,7 @@ export default function Index({ children }: { children: React.ReactNode }) {
           >
             <Stack width={"240px"}>
               <Stack p={2} direction={"row"}>
-                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                  music_shio
-                </Typography>
+                <Logo />
                 <IconButton
                   color="inherit"
                   aria-label="menu"
