@@ -11,18 +11,15 @@ import {
 import { Box, Stack } from "@mui/system";
 import Image from "next/image";
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
-import { musicData } from "@/app/(main)/music/_data/data";
+import { Product, productData, ProductType } from "@/app/(main)/_data/data";
 import { Link } from "next-view-transitions";
+import { YoutubeProductModel } from "@/feature/product/domain/youtube-product.model";
+import { ProductTagModel } from "@/feature/product/domain/product-tag.model";
 
 export default function Page() {
-  const itemData = musicData.map(({ img, id, youtubeId, title, type, year }) => ({
-    img,
-    id,
-    externalUrl: `https://www.youtube.com/watch?v=${youtubeId}`,
-    title,
-    type: type as "original" | "cover",
-    year,
-  }));
+  const itemData = productData
+    .filter((item) => item.type === ProductType.YOUTUBE)
+    .map(youtubeProductModelEntityToModel);
   return (
     <Stack width={"100%"} spacing={2}>
       <Stack>
@@ -32,11 +29,36 @@ export default function Page() {
       <Divider />
       <Grid2 container spacing={{ xs: 1, md: 2 }} columns={{ xs: 4, sm: 4, md: 8 }}>
         {itemData.map((item) => (
-          <Item key={item.title} {...item} />
+          <Item
+            key={item.title}
+            img={item.thumbnailUrl}
+            id={item.id}
+            externalUrl={item.externalUrl}
+            title={item.title}
+            year={item.year}
+            tags={item.tags.map((tag) => tag.label)}
+          />
         ))}
       </Grid2>
     </Stack>
   );
+}
+
+function youtubeProductModelEntityToModel(entity: Product): YoutubeProductModel {
+  if (entity.type !== ProductType.YOUTUBE) {
+    throw new Error("Invalid product type");
+  }
+  if (!entity.youtubeId) {
+    throw new Error("Invalid youtubeId");
+  }
+  return YoutubeProductModel.reconstruct({
+    id: entity.id,
+    thumbnailUrl: entity.img,
+    title: entity.title,
+    year: entity.year,
+    youtubeId: entity.youtubeId,
+    tags: entity.tags.map((tag) => ProductTagModel.reconstruct({ label: tag })),
+  });
 }
 
 type ItemProps = {
@@ -44,11 +66,11 @@ type ItemProps = {
   id: string;
   externalUrl: string;
   title: string;
-  type: "original" | "cover";
+  tags: string[];
   year: number;
 };
 
-function Item({ img, id, title, externalUrl, type, year }: ItemProps) {
+function Item({ img, id, title, externalUrl, tags, year }: ItemProps) {
   return (
     <Grid2 size={4}>
       <Card
@@ -104,9 +126,13 @@ function Item({ img, id, title, externalUrl, type, year }: ItemProps) {
             >
               {title}
             </Typography>
-            <Box>
-              <Chip label={type} variant="outlined" />
-            </Box>
+            <Stack direction={"row"}>
+              {tags.map((tag) => (
+                <Box key={tag}>
+                  <Chip label={tag} variant="outlined" />
+                </Box>
+              ))}
+            </Stack>
           </Stack>
         </CardActionArea>
         <Box position={"absolute"} top={0} right={0} p={1}>

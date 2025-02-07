@@ -1,6 +1,6 @@
 import { Button, Divider, Typography } from "@mui/material";
 import { Box, Stack } from "@mui/system";
-import { musicData } from "@/app/(main)/music/_data/data";
+import { productData } from "@/app/(main)/_data/data";
 import { Link } from "next-view-transitions";
 import { ArrowBack } from "@mui/icons-material";
 
@@ -10,7 +10,7 @@ type PageProps = {
   };
 };
 export default function Page({ params: { id } }: PageProps) {
-  const itemData = musicData.find((item) => item.id === id);
+  const itemData = productData.find((item) => item.id === id);
 
   if (!itemData) {
     return <>not found</>;
