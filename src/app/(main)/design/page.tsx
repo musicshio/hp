@@ -3,20 +3,50 @@ import { Box, Stack } from "@mui/system";
 import Image from "next/image";
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import { Link } from "next-view-transitions";
-import { designData } from "@/app/(main)/design/_data/data";
+import { Product, productData, ProductType } from "@/app/(main)/_data/data";
+import { ExternalProductModel } from "@/feature/product/domain/external-product.model";
+import { ProductTagModel } from "@/feature/product/domain/product-tag.model";
 
 export default function Page() {
-  const itemData = designData;
+  const itemData = productData
+    .filter((item) => item.type === ProductType.EXTERNAL)
+    .map(externalProductModelEntityToModel);
+
   return (
     <Stack width={"100%"}>
       <Typography variant="h1">Design</Typography>
       <Grid2 container spacing={{ xs: 1, md: 2 }} columns={{ xs: 4, sm: 4, md: 8 }}>
         {itemData.map((item) => (
-          <Item key={item.title} {...item} />
+          <Item
+            key={item.title}
+            img={item.thumbnailUrl}
+            id={item.id}
+            externalUrl={item.externalUrl}
+            title={item.title}
+            year={item.year}
+            tags={item.tags.map((tag) => tag.label)}
+          />
         ))}
       </Grid2>
     </Stack>
   );
+}
+
+function externalProductModelEntityToModel(entity: Product): ExternalProductModel {
+  if (entity.type !== ProductType.EXTERNAL) {
+    throw new Error("Invalid product type");
+  }
+  if (!entity.externalUrl) {
+    throw new Error("Invalid external URL");
+  }
+  return ExternalProductModel.reconstruct({
+    id: entity.id,
+    thumbnailUrl: entity.img,
+    title: entity.title,
+    year: entity.year,
+    externalUrl: entity.externalUrl,
+    tags: entity.tags.map((tag) => ProductTagModel.reconstruct({ label: tag })),
+  });
 }
 
 type ItemProps = {
