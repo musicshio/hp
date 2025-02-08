@@ -1,14 +1,10 @@
 "use client";
 import * as React from "react";
-import { useState } from "react";
+import { ReactNode } from "react";
 import { Box, Stack, StackProps } from "@mui/system";
-import Nav from "@/app/(main)/_components/nav";
-import { AppBar, Divider, Drawer, Paper, Toolbar } from "@mui/material";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import CloseIcon from "@mui/icons-material/Close";
-import ModeSwitcher from "../nav/ModeSwitcher";
-import Logo from "@/components/logo";
+import { AppBar, Toolbar, Typography } from "@mui/material";
+import HeaderLogo from "@/app/(main)/_components/header-logo";
+import { Link } from "next-view-transitions";
 
 function StyledStack({ children, ...props }: StackProps) {
   return (
@@ -27,122 +23,43 @@ function StyledStack({ children, ...props }: StackProps) {
 }
 
 export default function Index({ children }: { children: React.ReactNode }) {
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   return (
-    <>
-      <Box
-        display={{
-          xs: "none",
-          sm: "block",
+    <Box>
+      <AppBar
+        position="static"
+        color={"transparent"}
+        sx={{
+          boxShadow: "none",
         }}
       >
-        <StyledStack direction={"row"}>
-          <Paper
-            elevation={3}
-            component={Box}
-            minWidth={"200px"}
-            variant={"outlined"}
-            sx={{
-              borderRadius: 2,
-              backgroundColor: "rgba(255, 255, 255, 0.05)",
-              backdropFilter: "blur(10px)",
-              webkitBackdropFilter: "blur(10px)",
-            }}
-            height={"100%"}
-            position={"relative"}
-          >
-            <Box p={2}>
-              <Logo height={"50px"} />
-            </Box>
-            <Divider />
-            <Nav />
-            <Box position={"absolute"} bottom={0} p={2}>
-              <ModeSwitcher />
-            </Box>
-          </Paper>
-          {children}
-        </StyledStack>
-      </Box>
-      <Box
-        display={{
-          xs: "block",
-          sm: "none",
-        }}
-      >
-        <StyledStack direction={"column"}>
-          <AppBar
-            component={Box}
-            position="sticky"
-            elevation={3}
-            borderRadius={2}
-            sx={{
-              backgroundColor: "rgba(255, 255, 255, 0.05)",
-              backdropFilter: "blur(10px)",
-              webkitBackdropFilter: "blur(10px)",
-            }}
-            enableColorOnDark
-          >
-            <Toolbar>
-              <Box width={"100%"} display="flex" justifyContent="center" alignItems="center">
-                <Logo width={"40px"} height={"40px"} />
-              </Box>
-              <Box right={8} position={"absolute"}>
-                <IconButton
-                  aria-label="menu"
-                  onClick={() => {
-                    setIsDrawerOpen(true);
-                  }}
-                >
-                  <MenuIcon />
-                </IconButton>
-              </Box>
-            </Toolbar>
-          </AppBar>
-          {children}
-          <Drawer
-            variant="temporary"
-            open={isDrawerOpen}
-            anchor={"right"}
-            onClose={() => {
-              setIsDrawerOpen(false);
-            }}
-            PaperProps={{
-              sx: {
-                backdropFilter: "blur(10px)",
-                webkitBackdropFilter: "blur(10px)",
-              },
-            }}
-            slotProps={{
-              backdrop: {
-                sx: {
-                  backdropFilter: "blur(3px)",
-                  webkitBackdropFilter: "blur(3px)",
-                },
-              },
-            }}
-          >
-            <Stack width={"240px"}>
-              <Stack p={2} direction={"row"}>
-                <Logo />
-                <IconButton
-                  color="inherit"
-                  aria-label="menu"
-                  onClick={() => {
-                    setIsDrawerOpen(false);
-                  }}
-                >
-                  <CloseIcon fontSize={"small"} />
-                </IconButton>
-              </Stack>
-              <Divider />
-              <Nav />
-              <Box position={"absolute"} bottom={0} p={2}>
-                <ModeSwitcher />
-              </Box>
-            </Stack>
-          </Drawer>
-        </StyledStack>
-      </Box>
-    </>
+        <Toolbar>
+          <Box sx={{ flexGrow: 1 }} alignItems={"flex-start"}>
+            <HeaderLogo />
+          </Box>
+          <Stack direction={"row"} spacing={4}>
+            <HeaderLink href={"/work"} text={"Works"} />
+            <HeaderLink href={"/skill"} text={"Skills"} />
+          </Stack>
+        </Toolbar>
+      </AppBar>
+      {children}
+    </Box>
+  );
+}
+
+function HeaderLink({ href, text }: { href: string; text: string }): ReactNode {
+  return (
+    <Box
+      component={Link}
+      href={href}
+      sx={{
+        color: "inherit",
+        textDecoration: "none",
+      }}
+    >
+      <Typography variant="h6" component="div">
+        {text}
+      </Typography>
+    </Box>
   );
 }
