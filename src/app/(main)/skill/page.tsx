@@ -60,8 +60,8 @@ const techStackItems: TechStackItem[] = [
 
 export default function Page() {
   return (
-    <Stack width={"100%"} spacing={2}>
-      <Typography variant="h1">Code</Typography>
+    <Stack alignItems={"center"} spacing={2}>
+      <Typography variant="h1">Skills</Typography>
       <Divider />
       <Typography variant="h5">Socials</Typography>
       <Stack direction={"row"} spacing={2}>
