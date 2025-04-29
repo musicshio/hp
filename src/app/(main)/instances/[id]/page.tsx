@@ -3,11 +3,12 @@ import prisma from "@/lib/prisma";
 import { notFound } from "next/navigation";
 
 type PageProps = {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 };
-export default async function Page({ params: { id } }: PageProps) {
+export default async function Page({ params }: PageProps) {
+  const { id } = await params;
   const instance = await prisma.instance.findUnique({
     where: {
       id,
