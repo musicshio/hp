@@ -155,17 +155,18 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": "prisma+postgres://accelerate.prisma-data.net/?api_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiN2Q0YTQxNjktNjI5Mi00Nzc0LWI3ZGQtOWI4NTBlMzYxNjE2IiwidGVuYW50X2lkIjoiOWIzNGYxOTEwZTA3MjBlN2RiNGI1MDQwMDBlMDNiY2I1MjYwNTg1Yjc2ODZiMTdjZmI2ZTMzNTRhNWNiZjliYSIsImludGVybmFsX3NlY3JldCI6IjUwMDNlMDBmLWIyMTItNDhmYi04NTQzLWFlMTdlYTA3OGJhYiJ9.f2YJbf4gmHbDFJIQpPzpU4iF-ABGjNt4cboUQ5H860o"
+        "value": null
       }
     }
   },
   "inlineSchema": "// Define database connection via the `DATABASE_URL` env var\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\n// Define custom output path for generated Prisma Client\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/app/generated/prisma-client\"\n}\n\nmodel Instance {\n  id      String @id @db.Uuid\n  name    String\n  content String\n}\n\nmodel Fragment {\n  id      String @id @db.Uuid\n  name    String\n  content String\n}\n",
   "inlineSchemaHash": "da3fb3fded4cc3339a576d5134fb25b036f998e21337a98c79b094d8f59abb25",
-  "copyEngine": false
+  "copyEngine": true
 }
 config.dirname = '/'
 
