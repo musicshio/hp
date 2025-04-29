@@ -4,7 +4,7 @@ import { ReactNode } from "react";
 import { Box, Stack, StackProps } from "@mui/system";
 import { AppBar, Toolbar, Typography } from "@mui/material";
 import HeaderLogo from "@/app/(main)/_components/header-logo";
-import { Link } from "next-view-transitions";
+import Link from "next/link";
 
 function StyledStack({ children, ...props }: StackProps) {
   return (
@@ -22,7 +22,7 @@ function StyledStack({ children, ...props }: StackProps) {
   );
 }
 
-export default function Index({ children }: { children: React.ReactNode }) {
+export default function MainLayout({ children }: { children: React.ReactNode }) {
   return (
     <Box>
       <AppBar
@@ -37,8 +37,9 @@ export default function Index({ children }: { children: React.ReactNode }) {
             <HeaderLogo />
           </Box>
           <Stack direction={"row"} spacing={4}>
-            <HeaderLink href={"/work"} text={"Works"} />
-            <HeaderLink href={"/skill"} text={"Skills"} />
+            <HeaderLink href={"/instances"} text={"Instances"} />
+            <HeaderLink href={"/fragments"} text={"Fragments"} />
+            <HeaderLink href={"/about"} text={"About"} />
           </Stack>
         </Toolbar>
       </AppBar>

@@ -1,5 +1,5 @@
 import { Box } from "@mui/system";
-import { BoxProps } from "@mui/system/Box/Box";
+import { BoxProps } from "@mui/system/Box";
 
 export type LogoProps = BoxProps;
 export default function Logo(props: LogoProps) {

@@ -2,7 +2,7 @@
 import { Box } from "@mui/system";
 import * as React from "react";
 import Logo from "@/components/logo";
-import { Link } from "next-view-transitions";
+import Link from "next/link";
 
 export default function HeaderLogo() {
   return (
