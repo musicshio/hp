@@ -4,7 +4,6 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import theme from "@/theme";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import InitColorSchemeScript from "@mui/material/InitColorSchemeScript";
-import { ViewTransitions } from "next-view-transitions";
 
 const roboto = Roboto({
   weight: ["300", "400", "500", "700"],
@@ -20,18 +19,16 @@ export const metadata: Metadata = {
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <ViewTransitions>
-      <html lang="ja" suppressHydrationWarning>
-        <body className={roboto.variable}>
-          <InitColorSchemeScript attribute="class" />
-          <AppRouterCacheProvider>
-            <ThemeProvider theme={theme}>
-              <CssBaseline />
-              {children}
-            </ThemeProvider>
-          </AppRouterCacheProvider>
-        </body>
-      </html>
-    </ViewTransitions>
+    <html lang="ja" suppressHydrationWarning>
+      <body className={roboto.variable}>
+        <InitColorSchemeScript attribute="class" />
+        <AppRouterCacheProvider>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            {children}
+          </ThemeProvider>
+        </AppRouterCacheProvider>
+      </body>
+    </html>
   );
 }
