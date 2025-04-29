@@ -25,7 +25,7 @@ type CubeProps = Pick<ConvexPolyhedronProps, "position" | "rotation"> & {
 
 function Cube({ position, rotation, size, onClick }: CubeProps) {
   // note, this is wildly inefficient vs useBox
-  const geometry = new BoxGeometry(size, size, size);
+  const geometry = useMemo(() => new BoxGeometry(size, size, size), [size]);
   const args = useMemo(() => toConvexProps(geometry), [geometry]);
   const [ref] = useConvexPolyhedron(
     () => ({ args, mass: 100, position, rotation }),
