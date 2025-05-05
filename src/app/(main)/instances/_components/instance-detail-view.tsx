@@ -1,13 +1,15 @@
+import { Box, Skeleton, Typography } from "@mui/material";
+
 export type InstanceDetailViewProps = {
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
 };
 
 export default function InstanceDetailView({ title, description }: InstanceDetailViewProps) {
   return (
-    <div>
-      <h1>{title}</h1>
-      <p>{description}</p>
-    </div>
+    <Box>
+      <Typography variant={"h3"}>{title ?? <Skeleton />}</Typography>
+      <Typography variant={"body1"}>{description ?? <Skeleton />}</Typography>
+    </Box>
   );
 }

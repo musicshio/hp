@@ -1,5 +1,5 @@
-import { CircularProgress } from "@mui/material";
+import InstanceDetailView from "../../_components/instance-detail-view";
 
 export default function Loading() {
-  return <CircularProgress />;
+  return <InstanceDetailView />;
 }

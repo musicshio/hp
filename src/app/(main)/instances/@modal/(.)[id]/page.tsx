@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import prisma from "@/lib/prisma";
-import InstanceDetailModal from "@/app/(main)/instances/@modal/(.)[id]/_components/instance-detail-modal";
+import InstanceDetailView from "@/app/(main)/instances/_components/instance-detail-view";
 
 type NodeModalProps = {
   params: Promise<{
@@ -18,5 +18,5 @@ export default async function NodeModalPage({ params }: NodeModalProps) {
     notFound();
   }
 
-  return <InstanceDetailModal id={instance.id} title={instance.name} content={instance.content} />;
+  return <InstanceDetailView title={instance.name} description={instance.content} />;
 }

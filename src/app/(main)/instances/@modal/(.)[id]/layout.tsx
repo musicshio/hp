@@ -2,14 +2,13 @@
 
 import { Box, Button, Modal } from "@mui/material";
 import { useRouter } from "next/navigation";
-import InstanceDetailView from "@/app/(main)/instances/_components/instance-detail-view";
+import { ReactNode } from "react";
 
-type InstanceDetailModalProps = {
-  id: string;
-  title: string;
-  content: string;
+export type LayoutProps = {
+  children: ReactNode;
 };
-export default function InstanceDetailModal({ id, content, title }: InstanceDetailModalProps) {
+
+export default function Layout({ children }: LayoutProps) {
   const router = useRouter();
 
   const handleClose = () => {
@@ -31,7 +30,7 @@ export default function InstanceDetailModal({ id, content, title }: InstanceDeta
           minWidth: 300,
         }}
       >
-        <InstanceDetailView title={title} description={content} />
+        {children}
         <Button variant="contained" onClick={handleClose}>
           閉じる
         </Button>
