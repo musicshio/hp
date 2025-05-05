@@ -1,5 +1,6 @@
-import { Container, Typography } from "@mui/material";
+import { Container } from "@mui/material";
 import { Stack } from "@mui/system";
+import Heading from "@/app/(main)/_components/heading";
 
 export type LayoutProps = {
   children: React.ReactNode;
@@ -9,7 +10,7 @@ export default function Layout({ children, modal }: LayoutProps) {
   return (
     <Container maxWidth={"lg"}>
       <Stack alignItems={"center"}>
-        <Typography variant="h2">Instances</Typography>
+        <Heading text={"Instances"} />
         {children}
         {modal}
       </Stack>

@@ -6,7 +6,6 @@ import { SiGithub, SiX, SiYoutube, SiZenn } from "react-icons/si";
 export default function Page() {
   return (
     <Stack alignItems={"center"} spacing={2}>
-      <Typography variant="h2">About</Typography>
       <Typography variant="h5">Introduction</Typography>
       <Typography variant="body1"></Typography>
 
