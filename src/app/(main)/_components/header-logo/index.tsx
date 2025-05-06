@@ -7,7 +7,7 @@ import Link from "next/link";
 export default function HeaderLogo() {
   return (
     <Box component={Link} href={"/"}>
-      <Logo height={"60px"} width={"50px"} />
+      <Logo height={"30px"} width={"40px"} />
     </Box>
   );
 }
