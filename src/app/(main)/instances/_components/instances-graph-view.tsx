@@ -6,9 +6,9 @@ import { Suspense, useMemo, useRef } from "react";
 import type { BufferGeometry, Mesh } from "three";
 import { BoxGeometry } from "three";
 import { Geometry } from "three-stdlib";
-import { Box } from "@mui/material";
 import { ThreeEvent } from "@react-three/fiber/dist/declarations/src/core/events";
 import { useRouter } from "next/navigation";
+import { useColorScheme } from "@mui/material/styles";
 
 function toConvexProps(bufferGeometry: BufferGeometry): [vertices: Triplet[], faces: Triplet[]] {
   const geo = new Geometry().fromBufferGeometry(bufferGeometry);
@@ -39,12 +39,17 @@ function Cube({ position, rotation, size, onClick }: CubeProps) {
   );
 }
 
-function Plane(props: PlaneProps) {
+function Plane({
+  color,
+  ...props
+}: PlaneProps & {
+  color: string;
+}) {
   const [ref] = usePlane(() => ({ type: "Static", ...props }), useRef<Mesh>(null));
   return (
     <mesh ref={ref} receiveShadow>
       <planeGeometry args={[10, 10]} />
-      <shadowMaterial color="#171717" />
+      <shadowMaterial color={color} />
     </mesh>
   );
 }
@@ -67,39 +72,45 @@ function InstanceNode({ id, title, content }: InstanceNodeProps) {
 }
 
 export type InstancesGraphViewProps = {
-  instances: InstanceNodeProps[];
+  instances: {
+    id: string;
+    title: string;
+    content: string;
+  }[];
 };
 export default function InstancesGraphView({ instances }: InstancesGraphViewProps) {
+  const { mode } = useColorScheme();
+
+  const backGroundColor = mode === "dark" ? "black" : "white";
+
   return (
-    <Box zIndex={-1} position={"fixed"} top={0} left={0} width={"100vw"} height={"100vh"}>
-      <Canvas camera={{ fov: 50, position: [-1, 1, 5] }} shadows>
-        <color attach="background" args={["black"]} />
-        <spotLight
-          angle={0.3}
-          castShadow
-          decay={0}
-          intensity={2 * Math.PI}
-          penumbra={1}
-          position={[15, 15, 15]}
-          shadow-mapSize-width={2048}
-          shadow-mapSize-height={2048}
-        />
-        <Suspense fallback={null}>
-          <Physics>
-            <group>
-              <Plane rotation={[-Math.PI / 2, 0, 0]} />
-              {instances.map((instance) => (
-                <InstanceNode
-                  key={instance.id}
-                  id={instance.id}
-                  title={instance.title}
-                  content={instance.content}
-                />
-              ))}
-            </group>
-          </Physics>
-        </Suspense>
-      </Canvas>
-    </Box>
+    <Canvas camera={{ fov: 50, position: [-1, 1, 5] }} shadows>
+      <color attach="background" args={[backGroundColor]} />
+      <spotLight
+        angle={0.3}
+        castShadow
+        decay={0}
+        intensity={2 * Math.PI}
+        penumbra={1}
+        position={[15, 15, 15]}
+        shadow-mapSize-width={2048}
+        shadow-mapSize-height={2048}
+      />
+      <Suspense fallback={null}>
+        <Physics>
+          <group>
+            <Plane rotation={[-Math.PI / 2, 0, 0]} color={backGroundColor} />
+            {instances.map((instance) => (
+              <InstanceNode
+                key={instance.id}
+                id={instance.id}
+                title={instance.title}
+                content={instance.content}
+              />
+            ))}
+          </group>
+        </Physics>
+      </Suspense>
+    </Canvas>
   );
 }
