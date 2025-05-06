@@ -24,7 +24,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <body className={roboto.variable}>
         <InitColorSchemeScript attribute="class" />
         <AppRouterCacheProvider>
-          <ThemeProvider theme={theme}>
+          <ThemeProvider theme={theme} defaultMode="dark">
             <CssBaseline />
             {children}
           </ThemeProvider>
