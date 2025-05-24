@@ -11,16 +11,17 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
   return (
     <Box>
       <AppBar
-        position="static"
+        position={"sticky"}
         color={"transparent"}
         sx={{
           boxShadow: "none",
         }}
       >
         <Toolbar>
-          <Box sx={{ flexGrow: 1 }} alignItems={"flex-start"}>
+          <Box alignItems={"flex-start"}>
             <HeaderLogo />
           </Box>
+          <Box sx={{ flexGrow: 1 }} />
           <Stack direction={"row"}>
             <Stack direction={"row"} spacing={1} my={"auto"} mr={2}>
               <HeaderLink href={"/instances"} text={"Instances"} />
@@ -43,27 +44,37 @@ function HeaderLink({ href, text }: { href: string; text: string }): ReactNode {
       href={href}
       sx={{
         color: "inherit",
-        textDecoration: "none",
         position: "relative",
-        padding: "0 10px",
+        display: "inline-block",
+        textDecoration: "none",
+        overflow: "hidden",
         fontSize: "1.5rem",
-        backgroundColor: "transparent",
+        px: "10px",
+        "& .text": {
+          position: "relative",
+          zIndex: 1,
+          transition: "color 0.3s ease",
+        },
         "&::before": {
+          content: '""',
           position: "absolute",
+          top: 0,
           left: 0,
           width: 0,
           height: "100%",
-          content: '""',
-          backgroundColor: "#fff",
-          mixBlendMode: "difference",
-          transition: "0.3s",
+          transition: "width 0.3s ease",
+          zIndex: 0,
+          backgroundColor: (theme) => (theme.palette.mode === "dark" ? "#fff" : "#000"),
         },
         "&:hover::before": {
           width: "100%",
         },
+        "&:hover .text": {
+          color: (theme) => (theme.palette.mode === "dark" ? "#000" : "#fff"),
+        },
       }}
     >
-      <Typography variant="caption" component="div">
+      <Typography className="text" variant="caption" component="div">
         {text}
       </Typography>
     </Box>
