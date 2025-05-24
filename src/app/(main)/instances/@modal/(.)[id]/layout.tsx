@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Button, Modal } from "@mui/material";
+import { Button, Container, Modal } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { ReactNode } from "react";
 
@@ -17,8 +17,9 @@ export default function Layout({ children }: LayoutProps) {
 
   return (
     <Modal open onClose={handleClose}>
-      <Box
+      <Container
         sx={{
+          minHeight: "80%",
           position: "absolute" as const,
           top: "50%",
           left: "50%",
@@ -31,10 +32,17 @@ export default function Layout({ children }: LayoutProps) {
         }}
       >
         {children}
-        <Button variant="contained" onClick={handleClose}>
+        <Button
+          variant="contained"
+          onClick={handleClose}
+          sx={{
+            position: "fixed",
+            bottom: 24,
+          }}
+        >
           閉じる
         </Button>
-      </Box>
+      </Container>
     </Modal>
   );
 }

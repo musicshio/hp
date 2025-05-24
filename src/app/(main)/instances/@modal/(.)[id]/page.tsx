@@ -18,5 +18,19 @@ export default async function NodeModalPage({ params }: NodeModalProps) {
     notFound();
   }
 
-  return <InstanceDetailView title={instance.name} description={instance.content} />;
+  const i = {
+    id: "hoge",
+    name: "【アカペラカバー】トウキョウ・シャンディ・ランデヴ feat. 花譜, ツミキ - MAISONdes covered by shio",
+    url: "https://www.youtube.com/watch?v=7qyZWwgqGf8",
+  };
+
+  return (
+    <InstanceDetailView
+      title={
+        "【アカペラカバー】トウキョウ・シャンディ・ランデヴ feat. 花譜, ツミキ - MAISONdes covered by shio"
+      }
+      description={instance.content}
+      url={"https://www.youtube.com/watch?v=7qyZWwgqGf8"}
+    />
+  );
 }

@@ -17,5 +17,11 @@ export default async function Page({ params }: PageProps) {
   if (!instance) {
     notFound();
   }
-  return <InstanceDetailView title={instance.name} description={instance.content} />;
+  return (
+    <InstanceDetailView
+      title={instance.name}
+      description={instance.content}
+      url={"https://www.youtube.com/watch?v=7qyZWwgqGf8"}
+    />
+  );
 }
