@@ -9,6 +9,7 @@ import { Geometry } from "three-stdlib";
 import { ThreeEvent } from "@react-three/fiber/dist/declarations/src/core/events";
 import { useRouter } from "next/navigation";
 import { useColorScheme } from "@mui/material/styles";
+import { OrbitControls } from "@react-three/drei";
 
 function toConvexProps(bufferGeometry: BufferGeometry): [vertices: Triplet[], faces: Triplet[]] {
   const geo = new Geometry().fromBufferGeometry(bufferGeometry);
@@ -57,10 +58,9 @@ function Plane({
 type InstanceNodeProps = {
   id: string;
   title: string;
-  content: string;
 };
 
-function InstanceNode({ id, title, content }: InstanceNodeProps) {
+function InstanceNode({ id, title }: InstanceNodeProps) {
   const router = useRouter();
   const handleClick = (e: ThreeEvent<MouseEvent>) => {
     e.stopPropagation();
@@ -75,7 +75,6 @@ export type InstancesGraphViewProps = {
   instances: {
     id: string;
     title: string;
-    content: string;
   }[];
 };
 export default function InstancesGraphView({ instances }: InstancesGraphViewProps) {
@@ -101,15 +100,11 @@ export default function InstancesGraphView({ instances }: InstancesGraphViewProp
           <group>
             <Plane rotation={[-Math.PI / 2, 0, 0]} color={backGroundColor} />
             {instances.map((instance) => (
-              <InstanceNode
-                key={instance.id}
-                id={instance.id}
-                title={instance.title}
-                content={instance.content}
-              />
+              <InstanceNode key={instance.id} id={instance.id} title={instance.title} />
             ))}
           </group>
         </Physics>
+        <OrbitControls />
       </Suspense>
     </Canvas>
   );
