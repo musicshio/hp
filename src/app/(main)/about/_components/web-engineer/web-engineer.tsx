@@ -1,55 +1,12 @@
-"use client";
-import { useRef } from "react";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ScrollSmoother } from "gsap/ScrollSmoother";
 import { Box, Container, Stack, Typography } from "@mui/material";
 import { SocialButton } from "@/app/(main)/about/_components/social-button";
 import { SiGithub, SiZenn } from "react-icons/si";
-import { useColorScheme } from "@mui/material/styles";
-import { indigo } from "@mui/material/colors";
 import { themes } from "prism-react-renderer";
-import AnimatedCodeBlock from "@/app/(main)/about/_components/animated-code-block";
-
-gsap.registerPlugin(ScrollTrigger);
-gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+import AnimatedCodeBlock from "@/app/(main)/about/_components/web-engineer/animated-code-block";
 
 export default function WebEngineer() {
-  const boxRef = useRef(null);
-  const { mode } = useColorScheme();
-
-  // Using useGSAP to run animation on mount
-  useGSAP(() => {
-    gsap.fromTo(
-      boxRef.current,
-      {
-        opacity: 0,
-        y: 50,
-        size: 0.8,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        scrollTrigger: {
-          trigger: boxRef.current,
-          start: "top 70%",
-          end: "top 40%",
-          scrub: true,
-        },
-      },
-    );
-  }, []);
-
   return (
-    <Box
-      ref={boxRef}
-      width={"100%"}
-      minHeight={"100dvh"}
-      overflow={"hidden"}
-      pt={4}
-      bgcolor={mode === "dark" ? indigo[700] : indigo[100]}
-    >
+    <Box width={"100%"} minHeight={"100dvh"} overflow={"hidden"} pt={4}>
       <link
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/dheereshagrwal/coloured-icons@master/src/app/ci.min.css"
@@ -74,7 +31,8 @@ export default function WebEngineer() {
           spacing={2}
         >
           <AnimatedCodeBlock
-            theme={mode === "dark" ? themes.nightOwl : themes.nightOwlLight}
+            theme={themes.nightOwl}
+            // theme={mode === "dark" ? themes.nightOwl : themes.nightOwlLight}
             code={`Hi, I'm shio.
 
 - **Full-Stack Engineering**: Backend, frontend, and mobile app development.

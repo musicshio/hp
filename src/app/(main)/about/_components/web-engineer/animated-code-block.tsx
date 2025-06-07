@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useRef } from "react";
 import { Highlight, HighlightProps } from "prism-react-renderer";
 import { Box, Paper } from "@mui/material";
