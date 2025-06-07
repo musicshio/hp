@@ -974,18 +974,21 @@ export namespace Prisma {
     id: string | null
     name: string | null
     content: string | null
+    url: string | null
   }
 
   export type InstanceMaxAggregateOutputType = {
     id: string | null
     name: string | null
     content: string | null
+    url: string | null
   }
 
   export type InstanceCountAggregateOutputType = {
     id: number
     name: number
     content: number
+    url: number
     _all: number
   }
 
@@ -994,18 +997,21 @@ export namespace Prisma {
     id?: true
     name?: true
     content?: true
+    url?: true
   }
 
   export type InstanceMaxAggregateInputType = {
     id?: true
     name?: true
     content?: true
+    url?: true
   }
 
   export type InstanceCountAggregateInputType = {
     id?: true
     name?: true
     content?: true
+    url?: true
     _all?: true
   }
 
@@ -1085,6 +1091,7 @@ export namespace Prisma {
     id: string
     name: string
     content: string
+    url: string
     _count: InstanceCountAggregateOutputType | null
     _min: InstanceMinAggregateOutputType | null
     _max: InstanceMaxAggregateOutputType | null
@@ -1108,27 +1115,31 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     content?: boolean
+    url?: boolean
   }, ExtArgs["result"]["instance"]>
 
   export type InstanceSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
     content?: boolean
+    url?: boolean
   }, ExtArgs["result"]["instance"]>
 
   export type InstanceSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
     content?: boolean
+    url?: boolean
   }, ExtArgs["result"]["instance"]>
 
   export type InstanceSelectScalar = {
     id?: boolean
     name?: boolean
     content?: boolean
+    url?: boolean
   }
 
-  export type InstanceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "content", ExtArgs["result"]["instance"]>
+  export type InstanceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "content" | "url", ExtArgs["result"]["instance"]>
 
   export type $InstancePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Instance"
@@ -1137,6 +1148,7 @@ export namespace Prisma {
       id: string
       name: string
       content: string
+      url: string
     }, ExtArgs["result"]["instance"]>
     composites: {}
   }
@@ -1563,6 +1575,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Instance", 'String'>
     readonly name: FieldRef<"Instance", 'String'>
     readonly content: FieldRef<"Instance", 'String'>
+    readonly url: FieldRef<"Instance", 'String'>
   }
     
 
@@ -2915,7 +2928,8 @@ export namespace Prisma {
   export const InstanceScalarFieldEnum: {
     id: 'id',
     name: 'name',
-    content: 'content'
+    content: 'content',
+    url: 'url'
   };
 
   export type InstanceScalarFieldEnum = (typeof InstanceScalarFieldEnum)[keyof typeof InstanceScalarFieldEnum]
@@ -2989,12 +3003,14 @@ export namespace Prisma {
     id?: UuidFilter<"Instance"> | string
     name?: StringFilter<"Instance"> | string
     content?: StringFilter<"Instance"> | string
+    url?: StringFilter<"Instance"> | string
   }
 
   export type InstanceOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
     content?: SortOrder
+    url?: SortOrder
   }
 
   export type InstanceWhereUniqueInput = Prisma.AtLeast<{
@@ -3004,12 +3020,14 @@ export namespace Prisma {
     NOT?: InstanceWhereInput | InstanceWhereInput[]
     name?: StringFilter<"Instance"> | string
     content?: StringFilter<"Instance"> | string
+    url?: StringFilter<"Instance"> | string
   }, "id">
 
   export type InstanceOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
     content?: SortOrder
+    url?: SortOrder
     _count?: InstanceCountOrderByAggregateInput
     _max?: InstanceMaxOrderByAggregateInput
     _min?: InstanceMinOrderByAggregateInput
@@ -3022,6 +3040,7 @@ export namespace Prisma {
     id?: UuidWithAggregatesFilter<"Instance"> | string
     name?: StringWithAggregatesFilter<"Instance"> | string
     content?: StringWithAggregatesFilter<"Instance"> | string
+    url?: StringWithAggregatesFilter<"Instance"> | string
   }
 
   export type FragmentWhereInput = {
@@ -3070,42 +3089,49 @@ export namespace Prisma {
     id: string
     name: string
     content: string
+    url: string
   }
 
   export type InstanceUncheckedCreateInput = {
     id: string
     name: string
     content: string
+    url: string
   }
 
   export type InstanceUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
   }
 
   export type InstanceUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
   }
 
   export type InstanceCreateManyInput = {
     id: string
     name: string
     content: string
+    url: string
   }
 
   export type InstanceUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
   }
 
   export type InstanceUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
   }
 
   export type FragmentCreateInput = {
@@ -3181,18 +3207,21 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     content?: SortOrder
+    url?: SortOrder
   }
 
   export type InstanceMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     content?: SortOrder
+    url?: SortOrder
   }
 
   export type InstanceMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     content?: SortOrder
+    url?: SortOrder
   }
 
   export type UuidWithAggregatesFilter<$PrismaModel = never> = {
