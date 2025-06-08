@@ -1,53 +1,13 @@
 "use client";
-import { useRef } from "react";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ScrollSmoother } from "gsap/ScrollSmoother";
 import { Box, Container, Stack, Typography } from "@mui/material";
-import { SocialButton } from "@/app/(main)/about/_components/social-button";
 import { SiSoundcloud, SiYoutube } from "react-icons/si";
-import { useColorScheme } from "@mui/material/styles";
-import { cyan } from "@mui/material/colors";
-
-gsap.registerPlugin(ScrollTrigger);
-gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+import { SocialButton } from "@/app/(main)/about/_components/social-button";
+import Offset from "../Offset";
 
 export default function Music() {
-  const boxRef = useRef(null);
-  const { mode } = useColorScheme();
-
-  // Using useGSAP to run animation on mount
-  useGSAP(() => {
-    gsap.fromTo(
-      boxRef.current,
-      {
-        opacity: 0,
-        y: 50,
-        size: 0.8,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        scrollTrigger: {
-          trigger: boxRef.current,
-          start: "top 70%",
-          end: "top 40%",
-          scrub: true,
-        },
-      },
-    );
-  }, []);
-
   return (
-    <Box
-      ref={boxRef}
-      width={"100%"}
-      minHeight={"100dvh"}
-      overflow={"hidden"}
-      pt={4}
-      bgcolor={mode === "dark" ? cyan[900] : cyan[50]}
-    >
+    <Box width={"100%"} pt={4}>
+      <Offset />
       <Container>
         <Stack direction={"row"} spacing={4} alignItems={"center"} mb={2}>
           <Typography variant={"h4"}>Music Composer</Typography>

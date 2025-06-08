@@ -1,16 +1,14 @@
 import { Box, Container, Stack, Typography } from "@mui/material";
-import { SocialButton } from "@/app/(main)/about/_components/social-button";
 import { SiGithub, SiZenn } from "react-icons/si";
 import { themes } from "prism-react-renderer";
-import AnimatedCodeBlock from "@/app/(main)/about/_components/web-engineer/animated-code-block";
+import AnimatedCodeBlock from "./animated-code-block";
+import { SocialButton } from "@/app/(main)/about/_components/social-button";
+import Offset from "@/app/(main)/about/_components/Offset";
 
 export default function WebEngineer() {
   return (
-    <Box width={"100%"} minHeight={"100dvh"} overflow={"hidden"} pt={4}>
-      <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/dheereshagrwal/coloured-icons@master/src/app/ci.min.css"
-      />
+    <Box width={"100%"} overflow={"hidden"} pt={4}>
+      <Offset />
       <Container>
         <Stack direction={"row"} spacing={4} alignItems={"center"} mb={2}>
           <Typography variant={"h4"}>Web Engineer</Typography>
