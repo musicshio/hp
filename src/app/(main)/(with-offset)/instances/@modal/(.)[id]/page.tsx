@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
-import prisma from "@/lib/prisma";
-import InstanceDetailView from "@/app/(main)/instances/_components/instance-detail-view";
+import prisma from "../../../../../../lib/prisma";
+import InstanceDetailView from "../../_components/instance-detail-view";
 
 type NodeModalProps = {
   params: Promise<{

@@ -1,13 +1,10 @@
-import { Box } from "@mui/material";
-import Hero from "@/app/(main)/about/_components/hero";
-import WebEngineer from "@/app/(main)/about/_components/web-engineer/web-engineer";
+import { NoSsr } from "@mui/material";
+import HorizontalSlides from "@/app/(main)/about/[id]/HorizontalSlides";
 
-export default function Page() {
+export default function About() {
   return (
-    <Box>
-      <Hero />
-      <WebEngineer />
-      {/*<Music />*/}
-    </Box>
+    <NoSsr>
+      <HorizontalSlides initialIndex={0} />
+    </NoSsr>
   );
 }

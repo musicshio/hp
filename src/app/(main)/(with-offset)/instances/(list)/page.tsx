@@ -1,5 +1,5 @@
-import prisma from "@/lib/prisma";
-import InstancesGraphView from "@/app/(main)/instances/_components/instances-graph-view";
+import prisma from "../../../../../lib/prisma";
+import InstancesGraphView from "../_components/instances-graph-view";
 import { Box } from "@mui/material";
 
 export default async function Page() {

@@ -11,7 +11,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
   return (
     <Box>
       <AppBar
-        position={"sticky"}
+        position={"fixed"}
         color={"transparent"}
         sx={{
           boxShadow: "none",

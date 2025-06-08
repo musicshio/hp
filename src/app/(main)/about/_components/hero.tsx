@@ -2,12 +2,10 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ScrollSmoother } from "gsap/ScrollSmoother";
 import { Box, Container, Stack, Typography } from "@mui/material";
 import SplitText from "gsap/SplitText";
 
 gsap.registerPlugin(ScrollTrigger);
-gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 export default function Hero() {
   const boxRef = useRef<HTMLPreElement>(null);
@@ -44,7 +42,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <Box ref={boxRef} width={"100%"} height={"100dvh"}>
+    <Box ref={boxRef} width={"100%"} height={"100dvh"} display={"flex"} alignItems={"center"}>
       <Container>
         <Stack spacing={4} alignItems={"center"} mb={2}>
           <Typography variant={"h4"}>music_shio</Typography>
