@@ -42,37 +42,54 @@ function HeaderLink({ href, text }: { href: string; text: string }): ReactNode {
     <Box
       component={Link}
       href={href}
-      sx={{
-        color: "inherit",
-        position: "relative",
-        display: "inline-block",
-        textDecoration: "none",
-        overflow: "hidden",
-        fontSize: "1.5rem",
-        px: "10px",
-        "& .text": {
+      sx={[
+        {
+          color: "inherit",
           position: "relative",
-          zIndex: 1,
-          transition: "color 0.3s ease",
+          display: "inline-block",
+          textDecoration: "none",
+          overflow: "hidden",
+          fontSize: "1.5rem",
+          px: "10px",
+          "& .text": {
+            position: "relative",
+            zIndex: 1,
+            transition: "color 0.3s ease",
+          },
+          "&::before": {
+            content: '""',
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: 0,
+            height: "100%",
+            transition: "width 0.3s ease",
+            zIndex: 0,
+          },
+          "&:hover::before": {
+            width: "100%",
+          },
         },
-        "&::before": {
-          content: '""',
-          position: "absolute",
-          top: 0,
-          left: 0,
-          width: 0,
-          height: "100%",
-          transition: "width 0.3s ease",
-          zIndex: 0,
-          backgroundColor: (theme) => (theme.palette.mode === "dark" ? "#fff" : "#000"),
+        (theme) => {
+          return {
+            "&::before": {
+              backgroundColor: "#121212",
+            },
+            "&:hover .text": {
+              color: "#fff",
+            },
+          };
         },
-        "&:hover::before": {
-          width: "100%",
-        },
-        "&:hover .text": {
-          color: (theme) => (theme.palette.mode === "dark" ? "#000" : "#fff"),
-        },
-      }}
+        (theme) =>
+          theme.applyStyles("dark", {
+            "&::before": {
+              backgroundColor: "#fff",
+            },
+            "&:hover .text": {
+              color: "#000",
+            },
+          }),
+      ]}
     >
       <Typography className="text" variant="caption" component="div">
         {text}
