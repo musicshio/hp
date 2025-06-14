@@ -1,22 +1,19 @@
 import { Typography } from "@mui/material";
 import { Stack } from "@mui/system";
-import prisma from "@/lib/prisma";
 import Masonry from "@mui/lab/Masonry";
-import { Fragment } from "@/app/generated/prisma-client";
+import { fragments } from "@/app/(main)/(with-offset)/fragments/data";
 
 export default async function Page() {
-  const fragments: Fragment[] = await prisma.fragment.findMany();
-
   return (
     <Masonry columns={3} spacing={2}>
       {fragments.map((fragment) => (
-        <FragmentCard key={fragment.id} fragment={fragment} />
+        <FragmentCard key={fragment.id} id={fragment.id} content={fragment.description} />
       ))}
     </Masonry>
   );
 }
 
-function FragmentCard({ fragment }: { fragment: Fragment }) {
+function FragmentCard({ id, content }: { id: number; content: string }) {
   return (
     <Stack
       sx={{
@@ -25,8 +22,8 @@ function FragmentCard({ fragment }: { fragment: Fragment }) {
         padding: "16px",
       }}
     >
-      <Typography variant="h5">{fragment.id}</Typography>
-      <Typography variant="body2">{fragment.content}</Typography>
+      <Typography variant="h5">{id}</Typography>
+      <Typography variant="body2">{content}</Typography>
     </Stack>
   );
 }
