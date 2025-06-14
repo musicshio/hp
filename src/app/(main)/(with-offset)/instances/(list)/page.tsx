@@ -1,4 +1,3 @@
-import prisma from "../../../../../lib/prisma";
 import InstancesGraphView from "../_components/instances-graph-view";
 import { Box } from "@mui/material";
 import { instances } from "@/app/(main)/(with-offset)/instances/data";
