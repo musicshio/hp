@@ -33,11 +33,22 @@ function Cube({ position, rotation, size }: CubeProps) {
   );
 
   const a11y = useA11y();
+
+  const isFocused = a11y.focus;
   return (
-    <mesh castShadow receiveShadow {...{ geometry, position, ref, rotation }}>
-      <boxGeometry args={[size, size, size]} />
-      <meshPhysicalMaterial color={a11y.focus || a11y.hover ? "#555555" : "#ffffff"} />
-    </mesh>
+    <>
+      <mesh castShadow receiveShadow {...{ geometry, position, ref, rotation }}>
+        <boxGeometry args={[size, size, size]} />
+        <meshPhysicalMaterial color={isFocused ? "#555555" : "#ffffff"} />
+
+        {/*<Html>*/}
+        {/*  <PreviewCard open={isFocused}>*/}
+        {/*    <PreviewCardTrigger />*/}
+        {/*    <PreviewCardContent sideOffset={30}>Preview card content</PreviewCardContent>*/}
+        {/*  </PreviewCard>*/}
+        {/*</Html>*/}
+      </mesh>
+    </>
   );
 }
 
@@ -58,11 +69,12 @@ function Plane({
 
 type InstanceNodeProps = {
   id: string;
-  title: string;
+  index: number;
 };
 
-function InstanceNode({ id, title }: InstanceNodeProps) {
+function InstanceNode({ id, index }: InstanceNodeProps) {
   const router = useRouter();
+  // return <Cube position={[0, 3, -0.3]} rotation={[0.5, 0.4, -1]} size={0.2} />;
   return (
     <A11y
       role={"link"}
@@ -72,7 +84,9 @@ function InstanceNode({ id, title }: InstanceNodeProps) {
         router.push(`/instances/${id}`);
       }}
     >
-      <Cube position={[2, 3, -0.3]} rotation={[0.5, 0.4, -1]} size={0.2} />
+      <>
+        <Cube position={[0, 3 + index * 0.2, -0.3]} rotation={[0.5, 0.4, -1]} size={0.2} />
+      </>
     </A11y>
   );
 }
@@ -80,17 +94,16 @@ function InstanceNode({ id, title }: InstanceNodeProps) {
 export type InstancesGraphViewProps = {
   instances: {
     id: string;
-    title: string;
   }[];
 };
-export default function InstancesGraphView({ instances }: InstancesGraphViewProps) {
+export default function InstancesView({ instances }: InstancesGraphViewProps) {
   const { mode } = useColorScheme();
 
   const backGroundColor = mode === "dark" ? "black" : "white";
 
   return (
     <>
-      <Canvas camera={{ fov: 50, position: [-1, 1, 5] }} shadows>
+      <Canvas camera={{ fov: 30, position: [-1, 1, 5] }} shadows>
         <color attach="background" args={[backGroundColor]} />
         <spotLight
           angle={0.3}
@@ -106,8 +119,8 @@ export default function InstancesGraphView({ instances }: InstancesGraphViewProp
           <Physics>
             <group>
               <Plane rotation={[-Math.PI / 2, 0, 0]} color={backGroundColor} />
-              {instances.map((instance) => (
-                <InstanceNode key={instance.id} id={instance.id} title={instance.title} />
+              {instances.map((instance, index) => (
+                <InstanceNode key={instance.id} id={instance.id} index={index} />
               ))}
             </group>
           </Physics>

@@ -8,6 +8,8 @@ export default function Loading() {
   const bgColor = mode === "dark" ? "#222" : "#ddd";
   const color = mode === "dark" ? "#fff" : "#000";
 
+  return <></>;
+
   return (
     <Box
       position={"fixed"}
@@ -36,20 +38,3 @@ export default function Loading() {
     </Box>
   );
 }
-// /* HTML: <div class="loader"></div> */
-// .loader {
-//   height: 60px;
-//   aspect-ratio: 2/3;
-//   --c:no-repeat linear-gradient(#fff 0 0);
-//   background: var(--c), var(--c), var(--c), var(--c);
-//   background-size: 50% 33.4%;
-//   animation: l8 1.5s infinite linear;
-// }
-// @keyframes l8 {
-//   0%,
-//   5%   {background-position:0 25%,100% 25%,0 75%,100% 75%}
-//   33%  {background-position:0 50%,100% 0,0 100%,100% 50%}
-//   66%  {background-position:0 50%,0 0,100% 100%,100% 50%}
-//   95%,
-//   100% {background-position:0 75%,0 25%,100% 75%,100% 25%}
-// }
