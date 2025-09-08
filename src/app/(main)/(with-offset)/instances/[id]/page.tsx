@@ -1,4 +1,4 @@
-import InstanceDetailView from "../_components/instance-detail-view";
+import InstanceDetailView from "./_components/InstanceDetailView";
 import { notFound } from "next/navigation";
 import { instances } from "@/app/(main)/(with-offset)/instances/data";
 
@@ -13,11 +13,5 @@ export default async function Page({ params }: PageProps) {
   if (!instance) {
     notFound();
   }
-  return (
-    <InstanceDetailView
-      title={instance.title}
-      description={instance.description}
-      url={"https://www.youtube.com/watch?v=7qyZWwgqGf8"}
-    />
-  );
+  return <InstanceDetailView instance={instance} />;
 }

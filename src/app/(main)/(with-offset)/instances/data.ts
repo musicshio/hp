@@ -1,38 +1,86 @@
-export const instances: {
+export enum InstanceType {
+  YOUTUBE = "YOUTUBE",
+  NOTE = "NOTE",
+  OTHER = "OTHER",
+}
+
+type IInstance = {
   id: string;
   title: string;
   description: string;
-  url: string;
-}[] = [
+  year: number;
+  type: InstanceType;
+  externalUrl: string;
+};
+
+export type Instance = YoutubeInstance | NoteInstance | OtherInstance;
+
+export type YoutubeInstance = IInstance & {
+  type: InstanceType.YOUTUBE;
+  youtubeUrl: string;
+};
+
+export type NoteInstance = IInstance & {
+  type: InstanceType.NOTE;
+  noteUrl: string;
+};
+
+export type OtherInstance = IInstance & {
+  type: InstanceType.OTHER;
+  thumbnailUrl: string;
+};
+
+export const instances: Instance[] = [
   {
-    id: "1",
-    title: "量子力学",
-    description: "量子力学は、物質の最小単位である素粒子の挙動を研究する物理学の一分野です。",
-    url: "https://example.com/quantum-mechanics",
+    id: "tokyo-shandy-rendezvous",
+    title:
+      "【アカペラカバー】トウキョウ・シャンディ・ランデヴ feat. 花譜, ツミキ - MAISONdes covered by shio",
+    description: "アカペラでカバーしたトウキョウ・シャンディ・ランデヴのパフォーマンス動画です。",
+    type: InstanceType.YOUTUBE,
+    year: 2023,
+    externalUrl: "https://youtu.be/7qyZWwgqGf8",
+    youtubeUrl: "https://www.youtube.com/embed/7qyZWwgqGf8",
   },
   {
-    id: "2",
-    title: "音楽理論",
-    description: "音楽理論は、音楽の構造や法則を分析し、理解するための学問です。",
-    url: "https://example.com/music-theory",
-  },
-  {
-    id: "3",
-    title: "古典文学",
+    id: "kangaeru-okayama",
+    title: "NHK岡山『考える岡山』ロゴ・オープニング映像",
     description:
-      "古典文学は、時代を超えて読み継がれる文学作品を指し、その文化や価値観を反映しています。",
-    url: "https://example.com/classical-literature",
+      "NHK岡山放送局による教育動画コンテンツです。\nモーションロゴとオープニング映像(音楽、CG)を制作しました。",
+    type: InstanceType.OTHER,
+    thumbnailUrl: "/images/kangaeru-okayama.png",
+    year: 2022,
+    externalUrl: "https://www.nhk.or.jp/okayama/info/articles/310/002/01/",
   },
   {
-    id: "4",
-    title: "天体物理学",
-    description: "天体物理学は、宇宙の構造や起源、進化を研究する物理学の一分野です。",
-    url: "https://example.com/astrophysics",
+    id: "non-existent-discipline",
+    title: "無い学問",
+    year: 2020,
+    type: InstanceType.NOTE,
+    description: "実在しない学問を勉強して中間テストに臨む謎解きです。",
+    externalUrl: "https://note.com/music_shio/n/n6d154dd0cab0",
+    noteUrl: "https://note.com/embed/notes/n6d154dd0cab0",
   },
   {
-    id: "5",
-    title: "生態学",
-    description: "生態学は、生物とその環境との相互作用を研究する科学の一分野です。",
-    url: "https://example.com/ecology",
+    id: "human",
+    title: "ヒトと人間",
+    year: 2023,
+    description: `Hical Records 『ノアの箱庭 -Before The End SandboX』より
+2023 秋M3 H-14b
+
+作詞：桜井ひかる
+作編曲：shio
+ボーカル：shio`,
+    type: InstanceType.YOUTUBE,
+    externalUrl: "https://youtu.be/jE6Blb8wf5U",
+    youtubeUrl: "https://www.youtube.com/embed/jE6Blb8wf5U",
+  },
+  {
+    id: "paternality",
+    title: "炬燵、贖宥、猫とパンダ、ナンセンス文学、(父性)",
+    description: "俳句「夢色の炬燵 猫ちょっと詰めてね」とその解説記事です。",
+    year: 2023,
+    type: InstanceType.NOTE,
+    externalUrl: "https://note.com/music_shio/n/ne77c48c6f2d0",
+    noteUrl: "https://note.com/embed/notes/ne77c48c6f2d0",
   },
 ];
