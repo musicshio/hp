@@ -54,6 +54,9 @@
       },
     },
   },
+  "patchedDependencies": {
+    "@react-three/a11y@3.0.0": "patches/@react-three%2Fa11y@3.0.0.patch",
+  },
   "packages": {
     "@alloc/quick-lru": ["@alloc/quick-lru@5.2.0", "", {}, "sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw=="],
 
