@@ -313,7 +313,11 @@ export default function FogGround() {
         style={{
           position: "fixed",
           inset: 0,
-          zIndex: 0,
+          // 背景の霧。ページのコンテンツ(見出しやInstancesの3D)より必ず後ろに敷く。
+          // 0のままだと、位置指定された霧canvasが非位置指定のコンテンツより前に描画され、
+          // template のフェードイン(site-wrapperのopacity)完了後にInstancesのブロックを覆い隠す。
+          // Instancesの3D canvas(zIndex:-1)より更に後ろに置く。
+          zIndex: -2,
           pointerEvents: "none",
         }}
       />
