@@ -149,27 +149,165 @@ body {
     }
 }
 
-/* ページを移るとき。前のページと次のページを重ねて入れ替える */
-::view-transition-old(.page),
+/* ページを移るとき。前のページは霧に紛れるように焦点を失い、次のページは霧の中から焦点が合ってくる。
+   同時に霧そのものも掻き乱れる（fog-ground.tsx） */
+::view-transition-old(.page) {
+    animation: page-out 0.5s ease both;
+}
+
 ::view-transition-new(.page) {
-    animation-duration: 0.6s;
+    animation: page-in 0.9s ease both;
+}
+
+@keyframes page-out {
+    to {
+        opacity: 0;
+        filter: blur(16px);
+    }
+}
+
+@keyframes page-in {
+    from {
+        opacity: 0;
+        filter: blur(16px);
+    }
+}
+
+/* ページの題は 1 文字ずつ順に入れ替わる。文字ごとの View Transition（heading.tsx）を、何文字目かに応じて遅らせる */
+::view-transition-group(.page-title-char),
+::view-transition-old(.page-title-char),
+::view-transition-new(.page-title-char) {
+    animation-duration: 0.28s;
     animation-timing-function: ease;
 }
 
-/* ページの題は同じ位置にあるので、動かさずに文字だけを入れ替える */
-::view-transition-group(.page-title) {
-    animation-duration: 0.6s;
-}
-
-::view-transition-old(.page-title),
-::view-transition-new(.page-title) {
-    animation-duration: 0.6s;
-    animation-timing-function: ease;
-    /* 題の長さが違っても、文字を引き伸ばさない */
+::view-transition-old(.page-title-char),
+::view-transition-new(.page-title-char) {
+    /* 文字の幅が違っても引き伸ばさない */
     width: auto;
     height: 100%;
     object-fit: none;
     object-position: left top;
+}
+
+::view-transition-group(page-title-0),
+::view-transition-old(page-title-0),
+::view-transition-new(page-title-0) {
+    animation-delay: 0ms;
+}
+
+::view-transition-group(page-title-1),
+::view-transition-old(page-title-1),
+::view-transition-new(page-title-1) {
+    animation-delay: 55ms;
+}
+
+::view-transition-group(page-title-2),
+::view-transition-old(page-title-2),
+::view-transition-new(page-title-2) {
+    animation-delay: 110ms;
+}
+
+::view-transition-group(page-title-3),
+::view-transition-old(page-title-3),
+::view-transition-new(page-title-3) {
+    animation-delay: 165ms;
+}
+
+::view-transition-group(page-title-4),
+::view-transition-old(page-title-4),
+::view-transition-new(page-title-4) {
+    animation-delay: 220ms;
+}
+
+::view-transition-group(page-title-5),
+::view-transition-old(page-title-5),
+::view-transition-new(page-title-5) {
+    animation-delay: 275ms;
+}
+
+::view-transition-group(page-title-6),
+::view-transition-old(page-title-6),
+::view-transition-new(page-title-6) {
+    animation-delay: 330ms;
+}
+
+::view-transition-group(page-title-7),
+::view-transition-old(page-title-7),
+::view-transition-new(page-title-7) {
+    animation-delay: 385ms;
+}
+
+::view-transition-group(page-title-8),
+::view-transition-old(page-title-8),
+::view-transition-new(page-title-8) {
+    animation-delay: 440ms;
+}
+
+::view-transition-group(page-title-9),
+::view-transition-old(page-title-9),
+::view-transition-new(page-title-9) {
+    animation-delay: 495ms;
+}
+
+::view-transition-group(page-title-10),
+::view-transition-old(page-title-10),
+::view-transition-new(page-title-10) {
+    animation-delay: 550ms;
+}
+
+::view-transition-group(page-title-11),
+::view-transition-old(page-title-11),
+::view-transition-new(page-title-11) {
+    animation-delay: 605ms;
+}
+
+::view-transition-group(page-title-12),
+::view-transition-old(page-title-12),
+::view-transition-new(page-title-12) {
+    animation-delay: 660ms;
+}
+
+::view-transition-group(page-title-13),
+::view-transition-old(page-title-13),
+::view-transition-new(page-title-13) {
+    animation-delay: 715ms;
+}
+
+::view-transition-group(page-title-14),
+::view-transition-old(page-title-14),
+::view-transition-new(page-title-14) {
+    animation-delay: 770ms;
+}
+
+::view-transition-group(page-title-15),
+::view-transition-old(page-title-15),
+::view-transition-new(page-title-15) {
+    animation-delay: 825ms;
+}
+
+::view-transition-group(page-title-16),
+::view-transition-old(page-title-16),
+::view-transition-new(page-title-16) {
+    animation-delay: 880ms;
+}
+
+::view-transition-group(page-title-17),
+::view-transition-old(page-title-17),
+::view-transition-new(page-title-17) {
+    animation-delay: 935ms;
+}
+
+::view-transition-group(page-title-18),
+::view-transition-old(page-title-18),
+::view-transition-new(page-title-18) {
+    animation-delay: 990ms;
+}
+
+::view-transition-group(page-title-19),
+::view-transition-old(page-title-19),
+::view-transition-new(page-title-19) {
+    animation-delay: 1045ms;
 }
 
 @media (prefers-reduced-motion: reduce) {
