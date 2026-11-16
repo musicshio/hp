@@ -1,13 +1,7 @@
 "use client";
 
 import { Box, Typography } from "@mui/material";
-import { Cormorant_Garamond, Shippori_Mincho } from "next/font/google";
-
-const cormorant = Cormorant_Garamond({
-  weight: ["300"],
-  subsets: ["latin"],
-  display: "swap",
-});
+import { Shippori_Mincho } from "next/font/google";
 
 const shippori = Shippori_Mincho({
   weight: ["400"],
@@ -18,36 +12,6 @@ const shippori = Shippori_Mincho({
 export default function Page() {
   return (
     <Box position={"fixed"} top={0} left={0} width={"100dvw"} height={"100dvh"}>
-      {/* 図としてのタイトル。読ませるためではなく、霧の中の密度として */}
-      <Typography
-        aria-hidden
-        sx={[
-          {
-            fontFamily: cormorant.style.fontFamily,
-            position: "fixed",
-            left: "-0.05em",
-            bottom: "-0.24em",
-            fontSize: "clamp(140px, 23vw, 420px)",
-            fontWeight: 300,
-            lineHeight: 1,
-            m: 0,
-            color: "text.primary",
-            opacity: 0.1,
-            filter: "blur(1px)",
-            mixBlendMode: "multiply",
-            pointerEvents: "none",
-            userSelect: "none",
-            whiteSpace: "nowrap",
-          },
-          (theme) =>
-            theme.applyStyles("dark", {
-              mixBlendMode: "screen",
-              opacity: 0.12,
-            }),
-        ]}
-      >
-        shio
-      </Typography>
       <Box
         position={"absolute"}
         left={"9vw"}
@@ -56,20 +20,8 @@ export default function Page() {
         gap={{ xs: 3, md: 5 }}
         alignItems={"flex-start"}
       >
-        <Typography
-          component={"h1"}
-          sx={{
-            fontFamily: "var(--font-display), var(--font-base)",
-            fontSize: "clamp(19px, 2.4vw, 28px)",
-            fontWeight: 700,
-            letterSpacing: "0.45em",
-            lineHeight: 1,
-            m: 0,
-            opacity: 0.88,
-          }}
-        >
-          music_shio
-        </Typography>
+        {/* 題字は画面に出さない。ページの題としてだけ残す */}
+        <h1 className="sr-only">music_shio</h1>
         <Typography
           sx={{
             fontFamily: shippori.style.fontFamily,

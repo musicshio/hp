@@ -30,8 +30,8 @@
 - 書体。
   - 全ページの書体は Zen Kaku Gothic New。「Zen Kaku Gothic New いいなあ」。欧文も和文もこれでまかなう。以前は Roboto で、和文は端末まかせだった。
   - ページの題（欧文）は Space Grotesk。「英文はもっと brutal なフォントないかなあ」「Space Grotesk いいですね h1 ではこれいいかも」。
-  - トップの「music_shio」も Space Grotesk にする（「Space Grotesk にする」）。大きさと字間は元のまま。
-  - トップの縦書きのコピー（Shippori Mincho）と、画面下の大きな「shio」（Cormorant Garamond）は変えていない。
+  - トップの縦書きのコピーは Shippori Mincho のまま。
+- トップから名前の文字を外す。「トップに『music_shio』の文字、いらないかもなあ」「画面下の shio もいらないなあ」。題字と、画面下の大きな「shio」を外した。「music_shio」は画面に出さないページの題としてだけ残している。
 
 ### 却下されたもの
 
