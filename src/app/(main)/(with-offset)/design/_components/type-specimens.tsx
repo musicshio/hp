@@ -1,7 +1,6 @@
-import { Cormorant_Garamond, Shippori_Mincho } from "next/font/google";
+import { Shippori_Mincho } from "next/font/google";
 
-// トップの題字とコピーで使っている書体（src/app/(main)/(without-offset)/page.tsx と同じ指定）
-const cormorant = Cormorant_Garamond({ weight: ["300"], subsets: ["latin"], display: "swap" });
+// トップのコピーで使っている書体（src/app/(main)/(without-offset)/page.tsx と同じ指定）
 const shippori = Shippori_Mincho({ weight: ["400"], subsets: ["latin"], display: "swap" });
 
 type Specimen = {
@@ -25,9 +24,8 @@ const SPECIMENS: Specimen[] = [
     latin: { family: "var(--font-display)", weight: 700 },
   },
   {
-    name: "Cormorant Garamond / Shippori Mincho",
+    name: "Shippori Mincho",
     where: "Top",
-    latin: { family: cormorant.style.fontFamily, weight: 300 },
     japanese: shippori.style.fontFamily,
   },
 ];
