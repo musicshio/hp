@@ -59,5 +59,8 @@
   },
   "patchedDependencies": {
     "@react-three/a11y@3.0.0": "patches/@react-three%2Fa11y@3.0.0.patch"
+  },
+  "volta": {
+    "node": "24.12.0"
   }
 }
