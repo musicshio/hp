@@ -103,8 +103,7 @@ export default function InstancesView({ instances }: InstancesGraphViewProps) {
 
   return (
     <>
-      <Canvas camera={{ fov: 30, position: [-1, 1, 5] }} shadows>
-        <color attach="background" args={[backGroundColor]} />
+      <Canvas camera={{ fov: 30, position: [-1, 1, 5] }} shadows gl={{ alpha: true }}>
         <spotLight
           angle={0.3}
           castShadow

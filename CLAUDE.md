@@ -37,7 +37,8 @@ music_shio（shio）の個人サイト。Next.js 15（App Router）、MUI と Ta
 
 ## 開発
 
-- 既定の Node が 16 で、Next.js 15 は起動しない。`.claude/launch.json` で nvm の Node 22 を指定している。ターミナルから起動する場合も Node 18.18 以上に切り替える。
+- Next.js 15 は Node 18.18 以上が要る。既定の Node が古い環境では `bun run dev` が起動しないので、先に Node を切り替える。
+- 作業を始める前に `git fetch` してリモートの `main` との差を確認する。手元の `main` が古いまま進めると、すでに変わっているページを前提に議論してしまう。
 - 開発サーバーが CSS の変更を拾わなくなることがある。表示が古いままなら再起動する。
 - 色の値は `src/lib/design-tokens.ts`（MUI のテーマとデザインページが参照）と `src/app/globals.css`（Tailwind / shadcn 用の CSS 変数）の 2 か所にある。変えるときは両方を揃える。
 - 昼夜の切り替えは `src/lib/day-night.ts`。描画前のスクリプトで MUI の保存値を書き換えてちらつきを防いでいる。
