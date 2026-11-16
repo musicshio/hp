@@ -59,9 +59,9 @@ export default function Page() {
         <Typography
           component={"h1"}
           sx={{
-            fontFamily: cormorant.style.fontFamily,
+            fontFamily: "var(--font-display), var(--font-base)",
             fontSize: "clamp(19px, 2.4vw, 28px)",
-            fontWeight: 300,
+            fontWeight: 700,
             letterSpacing: "0.45em",
             lineHeight: 1,
             m: 0,
