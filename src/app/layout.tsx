@@ -4,6 +4,8 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import theme from "@/theme";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import InitColorSchemeScript from "@mui/material/InitColorSchemeScript";
+import DayNightSync from "@/components/day-night-sync";
+import { dayNightInitScript } from "@/lib/day-night";
 import "./globals.css";
 
 const roboto = Roboto({
@@ -22,10 +24,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ja" suppressHydrationWarning>
       <body className={roboto.variable}>
-        <InitColorSchemeScript attribute="class" />
+        <script dangerouslySetInnerHTML={{ __html: dayNightInitScript }} />
+        <InitColorSchemeScript attribute="class" defaultMode="light" />
         <AppRouterCacheProvider>
-          <ThemeProvider theme={theme} defaultMode="dark">
+          <ThemeProvider theme={theme} defaultMode="light">
             <CssBaseline />
+            <DayNightSync />
             {children}
           </ThemeProvider>
         </AppRouterCacheProvider>

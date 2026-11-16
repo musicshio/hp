@@ -36,3 +36,7 @@ yarn-error.log*
 next-env.d.ts
 
 .env
+
+# research output (not part of the site)
+/reports/
+/research_notes/
