@@ -1,5 +1,6 @@
 import { NoSsr } from "@mui/material";
 import VerticalSlides, { VerticalSlidesProps } from "@/app/(main)/about/_components/VerticalSlides";
+import AboutTitle from "@/app/(main)/about/_components/about-title";
 
 type AboutProps = {
   params: Promise<{ slug?: string }>;
@@ -22,8 +23,11 @@ export default async function About({ params }: AboutProps) {
   }
 
   return (
-    <NoSsr>
-      <VerticalSlides initialSlide={initialSlide} />
-    </NoSsr>
+    <>
+      <AboutTitle />
+      <NoSsr>
+        <VerticalSlides initialSlide={initialSlide} />
+      </NoSsr>
+    </>
   );
 }

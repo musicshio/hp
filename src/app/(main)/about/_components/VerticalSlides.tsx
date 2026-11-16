@@ -8,8 +8,6 @@ import { Observer } from "gsap/Observer";
 import Hero from "@/app/(main)/about/_components/hero";
 import WebEngineer from "./web-engineer/web-engineer";
 import Music from "@/app/(main)/about/_components/music-composer/music";
-import Offset from "@/app/(main)/about/_components/Offset";
-import Heading from "@/app/(main)/_components/heading";
 
 gsap.registerPlugin(Observer);
 
@@ -89,12 +87,6 @@ export default function VerticalSlides({ initialSlide }: VerticalSlidesProps) {
         position: "relative",
       }}
     >
-      {/* ページの題。ほかのページと同じ位置に出し、最初のスライドと一緒に流れていく */}
-      <Box position="absolute" top={0} left={0} width="100%" sx={{ pointerEvents: "none" }}>
-        <Offset />
-        <Heading text="About" />
-      </Box>
-
       {sections.map(({ ref }, i) => (
         <Box
           key={i}
