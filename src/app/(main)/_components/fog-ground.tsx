@@ -84,12 +84,12 @@ void main() {
   // 影の色温度はゆっくり漂う(暖⇄寒)
   float hueN = smoothstep(0.3, 0.7, fbm(p * 0.55 + vec2(3.7, 8.1) + tt * 0.1));
 
-  vec3 paper = vec3(0.966, 0.954, 0.928);
-  vec3 shade = mix(vec3(0.60, 0.582, 0.548), vec3(0.556, 0.574, 0.588), hueN);
+  vec3 paper = vec3(0.982, 0.974, 0.956);
+  vec3 shade = mix(vec3(0.78, 0.765, 0.735), vec3(0.74, 0.755, 0.768), hueN);
   // 静かなページでは影が浅くなる
   vec3 light = mix(mix(paper, shade, uLevel), paper, tone);
 
-  vec3 paperD = vec3(0.052, 0.052, 0.058);
+  vec3 paperD = vec3(0.022, 0.022, 0.026);
   vec3 smoke = mix(vec3(0.245, 0.238, 0.222), vec3(0.205, 0.220, 0.235), hueN);
   vec3 dark = mix(paperD, mix(paperD, smoke, uLevel), 1.0 - tone);
 
@@ -113,7 +113,7 @@ void main() {
   float grad = smoothstep(0.50, 1.02, su.y);
   float density = mass * (0.22 + 0.78 * grad);
   density *= 0.82 + 0.36 * fbm(p * 2.3 + vec2(4.4, 1.9));
-  vec3 massCol = mix(vec3(0.088, 0.086, 0.083), vec3(0.905, 0.892, 0.868), uDark);
+  vec3 massCol = mix(vec3(0.045, 0.044, 0.042), vec3(0.955, 0.945, 0.925), uDark);
   col = mix(col, massCol, clamp(density, 0.0, 1.0) * 0.94 * uMass);
 
   // 縦の傷。数本だけ、途切れながら。たまに引き直される
@@ -143,14 +143,14 @@ void main() {
   float g = mix(g1, g2, 0.55);
   float lum = dot(col, vec3(0.3333));
   float midw = lum * (1.0 - lum) * 4.0;
-  col += (g - 0.5) * (0.034 + 0.09 * midw + disturb * 0.1);
+  col += (g - 0.5) * (0.008 + 0.02 * midw + disturb * 0.03);
 
   gl_FragColor = vec4(col, 1.0);
 }
 `;
 
-// トップは全強度。他ページは静かな霧が残る
-const QUIET_LEVEL = 0.45;
+// 霧の強さはどのページでも同じ。トップと他ページで変えない（柱だけはトップにのみ立つ）
+const QUIET_LEVEL = 1;
 
 export default function FogGround() {
   const { mode, systemMode } = useColorScheme();
