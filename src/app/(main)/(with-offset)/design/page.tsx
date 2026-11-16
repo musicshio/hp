@@ -4,8 +4,10 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { colorTokens } from "@/lib/design-tokens";
 import { designRules } from "@/lib/design-rules";
+import Heading from "@/app/(main)/_components/heading";
 import { instances } from "@/app/(main)/(with-offset)/instances/data";
 import { DayNightStatus, LogoSample, ModeToggleSample } from "./_components/live-samples";
+import TypeSpecimens from "./_components/type-specimens";
 
 export const metadata: Metadata = {
   title: "Design | music_shio",
@@ -21,7 +23,7 @@ export default function Page() {
 
   return (
     <main className="mx-auto w-full max-w-3xl px-6 pt-10 pb-24">
-      <h1 className="text-4xl font-medium">Design</h1>
+      <Heading text="Design" />
 
       <Section id="rules" title="Rules">
         <ol className="space-y-3">
@@ -55,15 +57,8 @@ export default function Page() {
         <DayNightStatus />
       </Section>
 
-      <Section id="type" title="Type" lead="書体はまだ決めていません。いま使っているものを載せています。">
-        <dl className="space-y-6">
-          <div>
-            <dt className="text-muted-foreground text-sm">Body — Roboto</dt>
-            <dd className="mt-1 text-lg leading-relaxed">
-              解釈を経由するのではなく、存在そのものを味わう。The quick brown fox jumps over the lazy dog.
-            </dd>
-          </div>
-        </dl>
+      <Section id="type" title="Type">
+        <TypeSpecimens />
       </Section>
 
       <Section id="components" title="Components">
