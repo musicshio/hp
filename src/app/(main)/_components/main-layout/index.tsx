@@ -26,6 +26,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
             <Stack direction={"row"} spacing={1} my={"auto"} mr={2}>
               <HeaderLink href={"/instances"} text={"Instances"} />
               <HeaderLink href={"/about"} text={"About"} />
+              <HeaderLink href={"/design"} text={"Design"} />
             </Stack>
             <ModeToggle />
           </Stack>
