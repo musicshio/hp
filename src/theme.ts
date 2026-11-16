@@ -20,7 +20,7 @@ const theme = createTheme({
     dark: scheme("night"),
   },
   typography: {
-    fontFamily: "var(--font-roboto)",
+    fontFamily: "var(--font-base)",
   },
   cssVariables: {
     colorSchemeSelector: "class",

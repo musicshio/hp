@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Roboto } from "next/font/google";
+import { Space_Grotesk, Zen_Kaku_Gothic_New } from "next/font/google";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import theme from "@/theme";
 import { CssBaseline, ThemeProvider } from "@mui/material";
@@ -8,11 +8,20 @@ import DayNightSync from "@/components/day-night-sync";
 import { dayNightInitScript } from "@/lib/day-night";
 import "./globals.css";
 
-const roboto = Roboto({
+// サイト全体の書体。欧文も和文もこの一つでまかなう（トップの題字とコピーだけは別の書体を使う）
+const baseFont = Zen_Kaku_Gothic_New({
   weight: ["300", "400", "500", "700"],
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-roboto",
+  variable: "--font-base",
+});
+
+// ページの題（欧文）に使う書体
+const displayFont = Space_Grotesk({
+  weight: ["700"],
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-display",
 });
 
 export const metadata: Metadata = {
@@ -23,7 +32,7 @@ export const metadata: Metadata = {
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ja" suppressHydrationWarning>
-      <body className={roboto.variable}>
+      <body className={`${baseFont.variable} ${displayFont.variable}`}>
         <script dangerouslySetInnerHTML={{ __html: dayNightInitScript }} />
         <InitColorSchemeScript attribute="class" defaultMode="light" />
         <AppRouterCacheProvider>
