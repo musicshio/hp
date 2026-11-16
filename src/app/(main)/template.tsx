@@ -1,25 +1,15 @@
 "use client";
-import { motion } from "framer-motion";
-import React from "react";
+import React, { unstable_ViewTransition as ViewTransition } from "react";
 
-const variants = {
-  hidden: { opacity: 0 },
-  enter: { opacity: 1 },
-};
-
+/**
+ * ページの中身。ページを移るとき、前のページと次のページを View Transition で重ねて入れ替える。
+ * ヘッダーと霧はこの外（layout）にあるので、遷移のあいだも途切れずに残る。
+ * ページの題は Heading が別の名前で受け持ち、同じ位置で文字だけが入れ替わる。
+ */
 export default function Template({ children }: { children: React.ReactNode }) {
   return (
-    <motion.div
-      className="site-wrapper"
-      variants={variants}
-      initial="hidden"
-      animate="enter"
-      transition={{
-        type: "spring",
-        duration: 4,
-      }}
-    >
-      {children}
-    </motion.div>
+    <ViewTransition default="page">
+      <div>{children}</div>
+    </ViewTransition>
   );
 }

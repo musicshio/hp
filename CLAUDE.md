@@ -42,4 +42,5 @@ music_shio（shio）の個人サイト。Next.js 15（App Router）、MUI と Ta
 - 開発サーバーが CSS の変更を拾わなくなることがある。表示が古いままなら再起動する。
 - 色の値は `src/lib/design-tokens.ts`（MUI のテーマとデザインページが参照）と `src/app/globals.css`（Tailwind / shadcn 用の CSS 変数）の 2 か所にある。変えるときは両方を揃える。
 - 昼夜の切り替えは `src/lib/day-night.ts`。描画前のスクリプトで MUI の保存値を書き換えてちらつきを防いでいる。
-- ページ全体が framer-motion のフェードインで包まれている（`src/app/(main)/template.tsx`）。ブラウザペインが裏にあるとアニメーションが進まず、スクリーンショットが空に見える。
+- ページの遷移は React の `ViewTransition`（`next.config.js` の `experimental.viewTransition`）で行う。ページの中身は `src/app/(main)/template.tsx`、ページの題は `heading.tsx` が受け持ち、動きの長さは `globals.css` の `::view-transition-*` で決めている。
+- 最初に開いたときだけ、中身が CSS のフェードイン（`.site-enter`）で現れる。ブラウザペインが裏にあるとアニメーションも View Transition も進まないので、スクリーンショットが空に見えたり、遷移が起きなかったりする。
