@@ -167,6 +167,17 @@ export default function FogGround() {
   massRef.current = isHome ? 1 : 0;
   const canvasRef = React.useRef<HTMLCanvasElement>(null);
 
+  // ページを移ることも、ポインタと同じく霧の中での動き。移るたびに霧が掻き乱れ、ゆっくり治る
+  const stirRef = React.useRef<() => void>(() => {});
+  const firstPathRef = React.useRef(true);
+  React.useEffect(() => {
+    if (firstPathRef.current) {
+      firstPathRef.current = false;
+      return;
+    }
+    stirRef.current();
+  }, [pathname]);
+
   React.useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -239,6 +250,24 @@ export default function FogGround() {
     };
     window.addEventListener("pointermove", onPointerMove);
 
+    // ページを移ったとき、画面を斜めに横切る軌跡を残す
+    let stirTimer: ReturnType<typeof setInterval> | undefined;
+    stirRef.current = () => {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      clearInterval(stirTimer);
+      const steps = 12;
+      let i = 0;
+      stirTimer = setInterval(() => {
+        const t = i / (steps - 1);
+        trail[trailHead * 3] = window.innerWidth * (0.08 + 0.84 * t);
+        trail[trailHead * 3 + 1] = window.innerHeight * (0.3 + 0.4 * t);
+        trail[trailHead * 3 + 2] = 1;
+        trailHead = (trailHead + 1) % TRAIL;
+        i++;
+        if (i >= steps) clearInterval(stirTimer);
+      }, 40);
+    };
+
     let w = 0;
     let h = 0;
     const resize = () => {
@@ -296,6 +325,8 @@ export default function FogGround() {
 
     return () => {
       cancelAnimationFrame(raf);
+      clearInterval(stirTimer);
+      stirRef.current = () => {};
       window.removeEventListener("resize", resize);
       window.removeEventListener("pointermove", onPointerMove);
       gl.deleteProgram(prog);
